@@ -12,27 +12,25 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ getSettingValue('favicon') }}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/third-party.css') }}">
+    <link rel="stylesheet" type="text/css" href="/assets/css/third-party.css">
     @if (getLoggedInUser()->theme_mode)
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom-dark.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.dark.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/plugins.dark.css') }}">
+        <link rel="stylesheet" type="text/css" href="/assets/css/custom-dark.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/style.dark.css">
+        <link rel="stylesheet" type="text/css" href="/css/plugins.dark.css">
     @else
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/plugins.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}">
+        <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/css/plugins.css">
+        <link rel="stylesheet" type="text/css" href="/css/custom.css">
         @endif
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
+    <link rel="stylesheet" type="text/css" href="/assets/css/custom.css">
     @livewireStyles
-    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/rappasoft/livewire-tables/css/laravel-livewire-tables.min.css') }}">
-
-    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/rappasoft/livewire-tables/css/laravel-livewire-tables-thirdparty.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="/vendor/rappasoft/livewire-tables/css/laravel-livewire-tables.min.css">
+    <link rel="stylesheet" type="text/css" href="/vendor/rappasoft/livewire-tables/css/laravel-livewire-tables-thirdparty.min.css">
 
     @routes
     @livewireScripts
-
-	<script src="{{ asset('vendor/rappasoft/livewire-tables/js/laravel-livewire-tables.min.js') }}"></script>
-	<script src="{{ asset('vendor/rappasoft/livewire-tables/js/laravel-livewire-tables-thirdparty.min.js') }}"></script>
+    <script src="/vendor/rappasoft/livewire-tables/js/laravel-livewire-tables.min.js"></script>
+    <script src="/vendor/rappasoft/livewire-tables/js/laravel-livewire-tables-thirdparty.min.js"></script>
 
 
         @if (checkLanguageSession() == 'ar')
