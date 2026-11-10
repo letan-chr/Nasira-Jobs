@@ -5,7 +5,7 @@
     <nav class="navbar navbar-expand-lg nasira-navbar">
         <div class="container nasira-nav-shell">
             <a class="navbar-brand nasira-brand" href="{{ url('/') }}">
-                <img src="{{ asset('front_web/images/nasira-logo.png') }}" alt="{{ getAppName() }}" />
+                <img src="{{ getLogoUrl() }}" alt="{{ getAppName() }}" />
             </a>
 
             <div class="nasira-nav-mobile-tools">

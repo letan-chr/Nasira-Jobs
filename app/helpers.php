@@ -184,6 +184,10 @@ if (! function_exists('getLogoUrl')) {
             $appLogo = Setting::where('key', '=', 'logo')->first();
         }
 
+        if (empty($appLogo)) {
+            return asset('front_web/images/nasira-logo.png');
+        }
+
         return $appLogo->logo_url;
     }
 }

@@ -24,12 +24,11 @@
 .nasira-solutions-mega {
   position: absolute;
   top: calc(100% + 0.55rem);
-  left: 50%;
+  left: 0;
   right: auto;
-  /* --nasira-mega-shift keeps panel under the link but inside the viewport */
-  --nasira-mega-shift: 0px;
-  transform: translateX(calc(-50% + var(--nasira-mega-shift))) translateY(6px);
-  width: min(1180px, calc(100vw - 2rem));
+  transform: translateY(6px);
+  width: min(1100px, calc(100vw - 2rem));
+  max-width: calc(100vw - 2rem);
   background: #fff;
   border: 1px solid rgba(0, 104, 55, 0.1);
   border-radius: 14px;
@@ -39,7 +38,8 @@
   pointer-events: none;
   transition: opacity 0.16s ease, visibility 0.16s ease, transform 0.16s ease;
   z-index: 1200;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .nasira-solutions-item:hover .nasira-solutions-mega,
@@ -47,15 +47,16 @@
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transform: translateX(calc(-50% + var(--nasira-mega-shift))) translateY(0);
+  transform: translateY(0);
 }
 
 .nasira-solutions-mega-inner {
   display: grid;
   grid-template-columns: minmax(0, 2.85fr) repeat(3, minmax(0, 1fr));
   gap: 0;
-  max-height: min(68vh, 480px);
-  overflow: auto;
+  max-height: min(70vh, 520px);
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .nasira-solutions-col {

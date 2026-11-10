@@ -117,7 +117,7 @@
     @endif
     <link href="{{ mix('css/front-pages.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('front_web/css/nasira-brand.css') }}?v=16" rel="stylesheet" type="text/css">
-    <link href="{{ asset('front_web/css/nasira-solutions.css') }}?v=18" rel="stylesheet" type="text/css">
+    <link href="{{ asset('front_web/css/nasira-solutions.css') }}?v=19" rel="stylesheet" type="text/css">
     @include('partials.appearance-css')
 
     @yield('page_css')
@@ -179,27 +179,25 @@
                 return window.matchMedia('(max-width: 991.98px)').matches;
             }
 
-            function clampMega() {
+            function placeMega() {
                 if (isMobileNav()) {
-                    mega.style.removeProperty('--nasira-mega-shift');
+                    mega.style.left = '';
+                    mega.style.width = '';
                     return;
                 }
-                mega.style.setProperty('--nasira-mega-shift', '0px');
-                var rect = mega.getBoundingClientRect();
+
                 var pad = 16;
-                var shift = 0;
-                if (rect.right > window.innerWidth - pad) {
-                    shift -= rect.right - (window.innerWidth - pad);
-                }
-                if (rect.left + shift < pad) {
-                    shift += pad - (rect.left + shift);
-                }
-                mega.style.setProperty('--nasira-mega-shift', shift + 'px');
+                var width = Math.min(1100, window.innerWidth - pad * 2);
+                var itemRect = item.getBoundingClientRect();
+                var desiredLeft = itemRect.left + (itemRect.width / 2) - (width / 2);
+                var clampedLeft = Math.max(pad, Math.min(desiredLeft, window.innerWidth - pad - width));
+                mega.style.width = width + 'px';
+                mega.style.left = (clampedLeft - itemRect.left) + 'px';
             }
 
-            item.addEventListener('mouseenter', clampMega);
-            item.addEventListener('focusin', clampMega);
-            window.addEventListener('resize', clampMega);
+            item.addEventListener('mouseenter', placeMega);
+            item.addEventListener('focusin', placeMega);
+            window.addEventListener('resize', placeMega);
 
             trigger.addEventListener('click', function (e) {
                 if (isMobileNav()) {
