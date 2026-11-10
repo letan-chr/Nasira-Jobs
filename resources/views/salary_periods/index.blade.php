@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-column ">
             @include('flash::message')
-            <livewire:salary-period-table lazy/>
+            <livewire:salary-period-table/>
         </div>
     </div>
     @include('salary_periods.add_modal')

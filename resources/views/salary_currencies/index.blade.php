@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-column ">
             @include('flash::message')
-            <livewire:salary-currency-table lazy/>
+            <livewire:salary-currency-table/>
         </div>
     </div>
     @include('marital_status.templates.templates')

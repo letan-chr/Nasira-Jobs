@@ -7,5 +7,5 @@
 @endpush
 @section('content')
     @include('flash::message')
-    <livewire:candidate-dashboard lazy/>
+    <livewire:candidate-dashboard/>
 @endsection

@@ -4,6 +4,6 @@
 @endsection
 @section('content')
     <div class="d-flex flex-column ">
-        <livewire:favourite-company-table lazy/>
+        <livewire:favourite-company-table/>
     </div>
 @endsection

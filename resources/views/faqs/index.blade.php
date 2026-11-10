@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-column ">
             @include('flash::message')
-            <livewire:f-a-q-table lazy/>
+            <livewire:f-a-q-table/>
         </div>
     </div>
     @include('faqs.add_modal')

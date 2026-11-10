@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-column ">
             @include('flash::message')
-            <livewire:candidate-table lazy/>
+            <livewire:candidate-table/>
         </div>
     </div>
     {{Form::hidden('candidateData',true,['id'=>'indexCandidateData'])}}

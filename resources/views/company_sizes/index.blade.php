@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-column ">
             @include('flash::message')
-            <livewire:company-size-table lazy/>
+            <livewire:company-size-table/>
         </div>
     </div>
     @include('company_sizes.templates.templates')

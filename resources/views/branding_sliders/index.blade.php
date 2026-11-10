@@ -9,7 +9,7 @@
     <div class="container-fluid">
         @include('flash::message')
         <div class="d-flex flex-column ">
-            <livewire:branding-sliders-table lazy/>
+            <livewire:branding-sliders-table/>
         </div>
     </div>
     @include('branding_sliders.add_modal')

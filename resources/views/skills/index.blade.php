@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-column ">
             @include('flash::message')
-            <livewire:skill-table lazy/>
+            <livewire:skill-table/>
         </div>
     </div>
     @include('skills.add_modal')

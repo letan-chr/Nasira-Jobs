@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-column ">
             @include('flash::message')
-            <livewire:all-resume-table lazy/>
+            <livewire:all-resume-table/>
         </div>
     </div>
     @include('resumes.show_modal')

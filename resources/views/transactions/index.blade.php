@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-column ">
             @include('flash::message')
-            <livewire:transaction-table lazy/>
+            <livewire:transaction-table/>
         </div>
     </div>
 @endsection

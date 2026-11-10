@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="d-flex flex-column ">
-        <livewire:favourite-job-table lazy/>
+        <livewire:favourite-job-table/>
     </div>
 @endsection
 @push('scripts')

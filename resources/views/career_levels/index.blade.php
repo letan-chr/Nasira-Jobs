@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-column ">
             @include('flash::message')
-            <livewire:career-level-table lazy/>
+            <livewire:career-level-table/>
         </div>
     </div>
     @include('career_levels.add_modal')

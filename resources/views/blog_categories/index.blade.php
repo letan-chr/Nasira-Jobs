@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-column ">
             @include('flash::message')
-            <livewire:post-category-table lazy/>
+            <livewire:post-category-table/>
         </div>
     </div>
     @include('blog_categories.add_modal')

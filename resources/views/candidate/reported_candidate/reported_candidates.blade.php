@@ -8,7 +8,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="d-flex flex-column ">
-            <livewire:reported-candidate-table lazy/>
+            <livewire:reported-candidate-table/>
         </div>
     </div>
     @include('candidate.reported_candidate.reported_candidate_show_modal')

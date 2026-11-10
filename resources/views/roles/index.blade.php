@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-column">
             @include('flash::message')
-            <livewire:role-table lazy/>
+            <livewire:role-table/>
         </div>
     </div>
     {{ Form::hidden('rolesData', true, ['id' => 'indexRolesData']) }}

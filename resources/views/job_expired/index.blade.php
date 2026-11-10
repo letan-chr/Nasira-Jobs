@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <div class="d-flex flex-column ">
         @include('flash::message')
-        <livewire:job-expired-table lazy/>
+        <livewire:job-expired-table/>
     </div>
 </div>
 @endsection

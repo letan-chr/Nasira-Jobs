@@ -12,7 +12,7 @@
         <livewire:header-sliders-component lazy :settings="$settings"/>
 
         <div class="d-flex flex-column ">
-            <livewire:header-slider-table lazy/>
+            <livewire:header-slider-table/>
         </div>
         @include('header_sliders.add_modal')
         @include('header_sliders.edit_modal')

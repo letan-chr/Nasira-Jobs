@@ -8,7 +8,7 @@
 @section('content')
         <div class="d-flex flex-column ">
             @include('flash::message')
-            <livewire:employer-follower-table lazy/>
+            <livewire:employer-follower-table/>
         </div>
 @endsection
 

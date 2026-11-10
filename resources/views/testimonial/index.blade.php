@@ -9,7 +9,7 @@
     <div class="container-fluid">
         @include('flash::message')
         <div class="d-flex flex-column ">
-            <livewire:testimonial-table lazy/>
+            <livewire:testimonial-table/>
         </div>
         @include('testimonial.add_modal')
         @include('testimonial.edit_modal')

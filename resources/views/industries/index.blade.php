@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-column ">
             @include('flash::message')
-            <livewire:industries-table lazy/>
+            <livewire:industries-table/>
         </div>
     </div>
     @include('industries.add_modal')

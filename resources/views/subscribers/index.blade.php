@@ -9,7 +9,7 @@
 <div class="container-fluid">
     <div class="d-flex flex-column ">
         @include('flash::message')
-        <livewire:subscriber-table lazy/>
+        <livewire:subscriber-table/>
     </div>
 </div>
 @endsection

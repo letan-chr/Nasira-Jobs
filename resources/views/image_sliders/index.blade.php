@@ -5,10 +5,10 @@
 @section('content')
     <div class="container-fluid">
         @include('flash::message')
-        <livewire:image-sliders-component lazy/>
+        <livewire:image-sliders-component/>
 
         <div class="d-flex flex-column ">
-            <livewire:image-slider-table lazy/>
+            <livewire:image-slider-table/>
         </div>
 
     </div>

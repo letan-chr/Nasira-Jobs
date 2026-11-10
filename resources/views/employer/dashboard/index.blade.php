@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/daterangepicker.css') }}">
 @endpush
 @section('content')
-    <livewire:employer-dashboard lazy/>
+    <livewire:employer-dashboard/>
 
     <div class="card card-xl-stretch mb-xl-8">
         <!--begin::Header-->
@@ -42,5 +42,5 @@
         </div>
     </div>
 
-    <livewire:employer-dashboard-table lazy/>
+    <livewire:employer-dashboard-table/>
 @endsection

@@ -5,7 +5,7 @@
 @section('content')
     <div class="d-flex flex-column ">
         @include('flash::message')
-        <livewire:job-stage-table lazy/>
+        <livewire:job-stage-table/>
     </div>
     @include('employer.job_stages.add_modal')
     @include('employer.job_stages.edit_modal')

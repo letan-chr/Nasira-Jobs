@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-column ">
             @include('flash::message')
-            <livewire:pending-jobs-table lazy/>
+            <livewire:pending-jobs-table/>
         </div>
     </div>
     @include('pending_jobs.reason_model')

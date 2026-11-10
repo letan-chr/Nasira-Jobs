@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-column ">
             @include('flash::message')
-                <livewire:degree-level-table lazy/>
+                <livewire:degree-level-table/>
         </div>
         @include('required_degree_levels.add_modal')
         @include('required_degree_levels.edit_modal')

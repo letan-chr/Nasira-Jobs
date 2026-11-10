@@ -6,7 +6,7 @@
 <div class="container-fluid">
     <div class="d-flex flex-column ">
         @include('flash::message')
-        <livewire:post-comment-table lazy/>
+        <livewire:post-comment-table/>
         {{Form::hidden('userCurrentLanguage',getCurrentLanguageCode(),['id'=>'postCommentLanguage'])}}
     </div>
 </div>

@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-column ">
             @include('flash::message')
-            <livewire:marital-status-table lazy/>
+            <livewire:marital-status-table/>
         </div>
     </div>
     @include('marital_status.add_modal')

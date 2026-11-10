@@ -9,7 +9,7 @@
 <div class="container-fluid">
     <div class="d-flex flex-column ">
         @include('flash::message')
-        <livewire:job-shift-table lazy/>
+        <livewire:job-shift-table/>
     </div>
 </div>
 

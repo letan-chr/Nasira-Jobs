@@ -6,7 +6,7 @@
 <div class="container-fluid">
     <div class="d-flex flex-column ">
         @include('flash::message')
-        <livewire:ownership-type-table lazy/>
+        <livewire:ownership-type-table/>
     </div>
 </div>
 @include('ownership_types.add_modal')

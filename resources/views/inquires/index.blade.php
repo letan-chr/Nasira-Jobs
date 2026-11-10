@@ -5,7 +5,7 @@
 @section('content')@include('flash::message')
 <div class="container-fluid">
     <div class="d-flex flex-column ">
-        <livewire:inquiries-table lazy/>
+        <livewire:inquiries-table/>
     </div>
 </div>
 @include('inquires.show_modal')

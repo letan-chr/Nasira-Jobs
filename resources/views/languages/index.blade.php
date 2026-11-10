@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-column ">
             @include('flash::message')
-            <livewire:language-table lazy/>
+            <livewire:language-table/>
         </div>
     </div>
     @include('languages.add_modal')

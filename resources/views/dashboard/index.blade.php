@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-column">
             <div class="row">
-                <livewire:admin-dashboard lazy />
+                <livewire:admin-dashboard />
                 <div class="col-xxl-6 mb-7 col-12">
                     <div class="card">
                         <div class="card-header pb-0 px-10">
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </div>
-                <livewire:admin-dashboard-table lazy />
+                <livewire:admin-dashboard-table />
             </div>
         </div>
     </div>

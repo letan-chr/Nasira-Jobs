@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-column ">
             @include('flash::message')
-            <livewire:functional-area-table lazy/>
+            <livewire:functional-area-table/>
         </div>
     </div>
     @include('functional_areas.add_modal')
