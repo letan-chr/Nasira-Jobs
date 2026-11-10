@@ -209,9 +209,9 @@ class Company extends Model implements HasMedia
     public function getCompanyUrlAttribute()
     {
         /** @var Media $media */
-        $media = $this->user->getMedia(User::PROFILE)->first();
-        if (! empty($media)) {
-            return $media->getFullUrl();
+        $media = $this->user?->getMedia(User::PROFILE)->first();
+        if (! empty($media) && is_file($media->getPath())) {
+            return $media->getUrl();
         }
 
         return asset('assets/img/nasira-placeholder.png');

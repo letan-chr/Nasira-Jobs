@@ -247,8 +247,8 @@ class User extends Authenticatable implements HasMedia
     {
         /** @var Media $media */
         $media = $this->getMedia(self::PROFILE)->first();
-        if (! empty($media)) {
-            return $media->getFullUrl();
+        if (! empty($media) && is_file($media->getPath())) {
+            return $media->getUrl();
         }
 
         return asset('assets/img/nasira-placeholder.png');

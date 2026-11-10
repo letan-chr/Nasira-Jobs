@@ -13,41 +13,32 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
 
-    {{--    <link rel="stylesheet" type="text/css" href="{{ mix('css/third_party.css') }}"> --}}
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/third-party.css') }}">
+    {{-- Root-relative asset paths avoid https://127.0.0.1 (HSTS/APP_URL) breaking local artisan serve. --}}
+    <link rel="stylesheet" type="text/css" href="/assets/css/third-party.css">
     @if (getLoggedInUser()->theme_mode)
-        {{--        <link rel="stylesheet" href="{{ asset('assets/css/table-dark.css') }}"> --}}
-        {{--        <link rel="stylesheet" href="{{ asset('backend/style.dark.bundle.css') }}"> --}}
-        {{--        <link rel="stylesheet" type="text/css" href="{{ mix('assets/css/dark-main.css') }}"> --}}
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom-dark.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.dark.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/plugins.dark.css') }}">
+        <link rel="stylesheet" type="text/css" href="/assets/css/custom-dark.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/style.dark.css">
+        <link rel="stylesheet" type="text/css" href="/css/plugins.dark.css">
     @else
-        {{--        <link rel="stylesheet" href="{{ asset('assets/css/livewire-table.css') }}"> --}}
-        {{--        <link rel="stylesheet" href="{{ asset('assets/css/style.bundle.css')}}"/> --}}
-        {{--        <link rel="stylesheet" type="text/css" href="{{ mix('assets/css/main.css') }}"> --}}
-
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/plugins.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}">
-        @endif
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
+        <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/css/plugins.css">
+        <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    @endif
+    <link rel="stylesheet" type="text/css" href="/assets/css/custom.css">
     @livewireStyles
-    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/rappasoft/livewire-tables/css/laravel-livewire-tables.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/rappasoft/livewire-tables/css/laravel-livewire-tables-thirdparty.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="/vendor/rappasoft/livewire-tables/css/laravel-livewire-tables.min.css">
+    <link rel="stylesheet" type="text/css" href="/vendor/rappasoft/livewire-tables/css/laravel-livewire-tables-thirdparty.min.css">
 
     @routes
     @livewireScripts
-    <script src="{{ asset('vendor/rappasoft/livewire-tables/js/laravel-livewire-tables.min.js') }}"></script>
-	<script src="{{ asset('vendor/rappasoft/livewire-tables/js/laravel-livewire-tables-thirdparty.min.js') }}"></script>
+    <script src="/vendor/rappasoft/livewire-tables/js/laravel-livewire-tables.min.js"></script>
+    <script src="/vendor/rappasoft/livewire-tables/js/laravel-livewire-tables-thirdparty.min.js"></script>
 
-    {{--    <script src="{{ mix('js/third_party.js') }}"></script> --}}
     <script src="{{ mix('js/third-party.js') }}"></script>
 
     <script data-turbo-eval="false">
         let lancode = "{{ checkLanguageSession() }}";
     </script>
-    {{--    <script src="{{ asset('assets/js/third-party.js') }}"></script> --}}
     <script data-turbo-eval="false">
         let lang = "{{ checkLanguageSession() ?? 'en' }}"
     </script>

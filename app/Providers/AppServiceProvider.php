@@ -61,15 +61,19 @@ class AppServiceProvider extends ServiceProvider
 
         if ($this->isLocalHostRequest()) {
             // Local artisan serve is HTTP-only — never force HTTPS or secure cookies here.
-            // Also pin the app root to the current local host so Livewire/DataTables
-            // do not call https://nasirajobs.com and leave admin lists blank.
+            // Pin app/asset/media URLs to the current local host so admin CSS and
+            // placeholders do not load from https://nasirajobs.com and break the UI.
+            $localRoot = 'http://'.request()->getHttpHost();
             config([
                 'session.secure' => false,
                 'app.force_https' => false,
+                'app.url' => $localRoot,
+                'app.asset_url' => null,
+                'filesystems.disks.public.url' => $localRoot.'/uploads',
             ]);
             URL::forceScheme('http');
             try {
-                URL::forceRootUrl(request()->getSchemeAndHttpHost());
+                URL::forceRootUrl($localRoot);
             } catch (\Throwable) {
                 // Ignore during early boot edge cases.
             }
