@@ -22,32 +22,28 @@
 }
 
 .nasira-solutions-mega {
+  /* display:none when closed — a ~100vw absolute panel under Solutions
+     was causing page-level horizontal overflow on load/refresh */
+  display: none;
   position: absolute;
   top: calc(100% + 0.55rem);
   left: 0;
   right: auto;
-  transform: translateY(6px);
+  transform: translateY(0);
   width: min(1100px, calc(100vw - 2rem));
   max-width: calc(100vw - 2rem);
   background: #fff;
   border: 1px solid rgba(0, 104, 55, 0.1);
   border-radius: 14px;
   box-shadow: 0 20px 48px rgba(30, 43, 36, 0.14);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.16s ease, visibility 0.16s ease, transform 0.16s ease;
   z-index: 1200;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
+  pointer-events: auto;
 }
 
 .nasira-solutions-item:hover .nasira-solutions-mega,
 .nasira-solutions-item:focus-within .nasira-solutions-mega {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translateY(0);
+  display: block;
 }
 
 .nasira-solutions-mega-inner {
@@ -905,12 +901,10 @@
 @media (max-width: 991.98px) {
   .nasira-solutions-mega {
     position: static;
-    left: auto;
-    width: 100%;
+    left: auto !important;
+    width: 100% !important;
+    max-width: none;
     transform: none !important;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
     box-shadow: none;
     border: 0;
     border-radius: 10px;
@@ -920,18 +914,14 @@
     margin: 0.15rem 0 0.35rem;
   }
 
-  .nasira-solutions-item.is-open .nasira-solutions-mega {
-    display: block;
-  }
-
   .nasira-solutions-item:hover .nasira-solutions-mega,
   .nasira-solutions-item:focus-within .nasira-solutions-mega {
     display: none;
   }
 
+  .nasira-solutions-item.is-open .nasira-solutions-mega,
   .nasira-solutions-item.is-open:hover .nasira-solutions-mega,
-  .nasira-solutions-item.is-open:focus-within .nasira-solutions-mega,
-  .nasira-solutions-item.is-open .nasira-solutions-mega {
+  .nasira-solutions-item.is-open:focus-within .nasira-solutions-mega {
     display: block;
   }
 

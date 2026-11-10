@@ -117,7 +117,7 @@
     @endif
     <link href="{{ mix('css/front-pages.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('front_web/css/nasira-brand.css') }}?v=16" rel="stylesheet" type="text/css">
-    <link href="{{ asset('front_web/css/nasira-solutions.css') }}?v=19" rel="stylesheet" type="text/css">
+    <link href="{{ asset('front_web/css/nasira-solutions.css') }}?v=20" rel="stylesheet" type="text/css">
     @include('partials.appearance-css')
 
     @yield('page_css')
@@ -197,7 +197,11 @@
 
             item.addEventListener('mouseenter', placeMega);
             item.addEventListener('focusin', placeMega);
-            window.addEventListener('resize', placeMega);
+            window.addEventListener('resize', function () {
+                if (item.matches(':hover') || item.contains(document.activeElement)) {
+                    placeMega();
+                }
+            });
 
             trigger.addEventListener('click', function (e) {
                 if (isMobileNav()) {
