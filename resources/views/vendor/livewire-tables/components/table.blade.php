@@ -56,24 +56,7 @@
         </table>
     </div>
 @elseif ($isBootstrap)
-    <div class="{{ $this->searchIsEnabled() && $this->searchVisibilityIsEnabled() ? 'd-lg-flex justify-content-between' : 'd-lg-flex justify-content-end' }} align-items-center mb-sm-7 mb-4">
-        @if ($this->searchIsEnabled() && $this->searchVisibilityIsEnabled())
-            <x-livewire-tables::tools.toolbar.items.search-field />
-        @endif
-        <div class="d-sm-flex d-block justify-content-end align-items-center pt-0 mt-0">
-            @if (! empty($this->showFilterOnHeader) && ! empty($this->filterComponents[0] ?? null))
-                @include($this->filterComponents[0], [
-                    'filterHeads' => [
-                        $this->filterComponents[1] ?? '',
-                        $this->filterComponents[2] ?? '',
-                    ],
-                ])
-            @endif
-            @if (! empty($this->showButtonOnHeader) && ! empty($this->buttonComponent))
-                @include($this->buttonComponent)
-            @endif
-        </div>
-    </div>
+    {{-- Toolbar (Search / Per Page / Add) is rendered once by tools.toolbar — do not duplicate here. --}}
     <div wire:key="{{ $tableName }}-twrap"
         {{ $attributes->merge($customAttributes['wrapper'])
             ->class(['table-responsive' => $customAttributes['wrapper']['default'] ?? true])

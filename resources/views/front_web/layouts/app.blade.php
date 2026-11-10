@@ -122,13 +122,14 @@
 
     @yield('page_css')
     @livewireStyles
-    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/rappasoft/livewire-tables/css/laravel-livewire-tables.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/rappasoft/livewire-tables/css/laravel-livewire-tables-thirdparty.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="/vendor/rappasoft/livewire-tables/css/laravel-livewire-tables.min.css">
+    <link rel="stylesheet" type="text/css" href="/vendor/rappasoft/livewire-tables/css/laravel-livewire-tables-thirdparty.min.css">
     @routes
 
-    @livewireScripts
-    <script src="{{ asset('vendor/rappasoft/livewire-tables/js/laravel-livewire-tables.min.js') }}"></script>
-	<script src="{{ asset('vendor/rappasoft/livewire-tables/js/laravel-livewire-tables-thirdparty.min.js') }}"></script>
+    @livewireScriptConfig
+    <script src="/vendor/livewire/livewire.min.js" data-csrf="{{ csrf_token() }}" data-update-uri="/livewire/update"></script>
+    <script src="/vendor/rappasoft/livewire-tables/js/laravel-livewire-tables.min.js"></script>
+    <script src="/vendor/rappasoft/livewire-tables/js/laravel-livewire-tables-thirdparty.min.js"></script>
 
     <script src="{{ mix('js/auth-third-party.js') }}"></script>
     <script src="https://js.stripe.com/v3/"></script>

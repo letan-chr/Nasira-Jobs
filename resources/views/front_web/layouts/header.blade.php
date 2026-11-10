@@ -37,14 +37,6 @@
                         <a class="nasira-nav-link nav-link {{ Request::is('company-lists') || Request::is('company-details*') ? 'is-active' : '' }}"
                             href="{{ route('front.company.lists') }}">{{ __('web.companies') }}</a>
                     </li>
-                    @auth
-                        @role('Employer|Admin')
-                            <li class="nav-item">
-                                <a class="nasira-nav-link nav-link {{ Request::is('candidate-lists') || Request::is('candidate-details*') ? 'is-active' : '' }}"
-                                    href="{{ route('front.candidate.lists') }}">{{ __('web.job_seekers') }}</a>
-                            </li>
-                        @endrole
-                    @endauth
                     <li class="nav-item">
                         <a class="nasira-nav-link nav-link {{ Request::is('cv-design*') ? 'is-active' : '' }}"
                             href="{{ route('front.cv.design') }}">CV Design</a>

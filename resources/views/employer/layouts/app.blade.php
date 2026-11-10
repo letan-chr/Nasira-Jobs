@@ -24,9 +24,12 @@
     @livewireStyles
     <link rel="stylesheet" type="text/css" href="/vendor/rappasoft/livewire-tables/css/laravel-livewire-tables.min.css">
     <link rel="stylesheet" type="text/css" href="/vendor/rappasoft/livewire-tables/css/laravel-livewire-tables-thirdparty.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/admin-livewire-tables.css?v=3">
+    <style>[wire\:cloak], [x-cloak] { display: revert !important; }</style>
 
     @routes
-    @livewireScripts
+    @livewireScriptConfig
+    <script src="/vendor/livewire/livewire.min.js" data-csrf="{{ csrf_token() }}" data-update-uri="/livewire/update"></script>
     <script src="/vendor/rappasoft/livewire-tables/js/laravel-livewire-tables.min.js"></script>
     <script src="/vendor/rappasoft/livewire-tables/js/laravel-livewire-tables-thirdparty.min.js"></script>
 

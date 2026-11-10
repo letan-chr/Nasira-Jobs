@@ -16,7 +16,7 @@
     <div class="col-sm-6 mb-5">
         {{ Form::label('country', __('messages.company.country').':', ['class' => 'form-label']) }}
         <span class="required"></span>
-        {{ Form::select('country_id', $data['countries'], null, ['id'=>'cvEducationCountryId','required','class' => 'form-select','placeholder' => __('messages.company.select_country'), 'data-modal-type' => 'education']) }}
+        {{ Form::select('country_id', $data['countries'], getDefaultCountryId(), ['id'=>'cvEducationCountryId','required','class' => 'form-select','placeholder' => __('messages.company.select_country'), 'data-modal-type' => 'education']) }}
     </div>
     <div class="col-sm-6 mb-5">
         {{ Form::label('state', __('messages.company.state').':', ['class' => 'form-label']) }}

@@ -90,7 +90,7 @@
     <div class="col-xl-6 col-md-6 col-sm-12 mb-5">
         {{ Form::label('country', __('messages.company.country').':', ['class' => 'form-label ']) }}
         <div class="input-group flex-nowrap">
-            {{ Form::select('country_id', $data['countries'], null, ['id'=>'countryId','class' => 'form-select ','placeholder' => __('messages.company.select_country')]) }}
+            {{ Form::select('country_id', $data['countries'], getDefaultCountryId(), ['id'=>'countryId','class' => 'form-select ','placeholder' => __('messages.company.select_country')]) }}
             <div class="input-group-text border-0">
                 <a href="javascript:void(0)" class="text-gray-500 createCandidateCountryModal"><i
                             class="fa fa-plus"></i></a>

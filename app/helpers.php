@@ -243,6 +243,24 @@ if (! function_exists('getCountries')) {
     }
 }
 
+if (! function_exists('getDefaultCountryId')) {
+    /**
+     * Default country for new forms/selects (Ethiopia).
+     */
+    function getDefaultCountryId(): ?int
+    {
+        static $countryId;
+
+        if ($countryId !== null) {
+            return $countryId ?: null;
+        }
+
+        $countryId = (int) (Country::where('name', 'Ethiopia')->value('id') ?? 0);
+
+        return $countryId ?: null;
+    }
+}
+
 /**
  * @return array
  */

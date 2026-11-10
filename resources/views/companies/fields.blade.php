@@ -62,7 +62,7 @@
         {{ Form::label('country', __('messages.company.country').':', ['class' => 'form-label ']) }}
         <span class="required"></span>
         <div class="input-group flex-nowrap">
-            {{ Form::select('country_id', $data['countries'], null, ['id'=>'countryId','class' => 'form-select','placeholder' => __('messages.company.select_country'),'required']) }}
+            {{ Form::select('country_id', $data['countries'], getDefaultCountryId(), ['id'=>'countryId','class' => 'form-select','placeholder' => __('messages.company.select_country'),'required']) }}
             <div class="input-group-text border-0">
                 <a href="javascript:void(0)" class="text-gray-500 createEmployerCountryModal"><i
                             class="fa fa-plus"></i></a>

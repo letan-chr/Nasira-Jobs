@@ -762,10 +762,7 @@ Route::middleware('xss', 'setLanguage')->group(function () {
          Route::get('/search-jobs', [Web\JobController::class, 'index'])->name('front.search.jobs');
          Route::get('/job-details/{uniqueId?}', [Web\JobController::class, 'jobDetails'])->name('front.job.details');
          Route::get('/company-lists', [Web\CompanyController::class, 'getCompaniesLists'])->name('front.company.lists');
-         Route::get(
-                  '/candidate-lists',
-                  [Web\CandidateController::class, 'getCandidatesLists']
-         )->name('front.candidate.lists')->middleware('role:Admin|Employer');
+         Route::redirect('/candidate-lists', '/')->name('front.candidate.lists');
          Route::get('/company-details/{uniqueId?}', [Web\CompanyController::class, 'getCompaniesDetails'])->name('front.company.details');
          Route::get('/about-us', [Web\AboutUsController::class, 'FAQLists'])->name('front.about.us');
          Route::get('/cv-design', [Web\CvDesignController::class, 'index'])->name('front.cv.design');

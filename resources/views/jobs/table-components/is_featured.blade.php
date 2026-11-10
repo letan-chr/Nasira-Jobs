@@ -1,30 +1,18 @@
 <div class="d-flex justify-content-start">
-    @if(!$row->featured)
-        <div class="dropdown">
-            <a class="btn btn-secondary text-white btn-sm dropdown-toggle" data-bs-toggle="dropdown"
-               aria-expanded="false">
-                {{ __('messages.front_settings.make_feature') }}
-            </a>
-            <ul class="fs-6 py-4 dropdown-menu customDropdown" aria-labelledby="dropdownMenuButton1">
-                <li><a class="btn btn-sm adminJobMakeFeatured" data-id="{{ $row->id }}"><?php echo __(
-                            'messages.front_settings.make_featured'
-                        ) ?></a>
-                </li>
-            </ul>
-        </div>
+    @if (! $row->featured)
+        <button type="button"
+            class="btn btn-sm btn-light-primary nasira-feature-btn adminJobMakeFeatured"
+            data-id="{{ $row->id }}">
+            {{ __('messages.front_settings.make_feature') }}
+        </button>
     @else
-        <div title="Expries On {{ Carbon\Carbon::parse($row->featured->end_time)->translatedFormat('jS M, Y') }}"
-             data-bs-toggle="tooltip" class="dropdown">
-            <a class="btn btn-success btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                {{ __('messages.front_settings.featured') }}
-                <i class="far fa-check-circle pl-1"></i>
-            </a>
-            <ul class="fs-6 py-4 dropdown-menu featuredDropdown" aria-labelledby="dropdownMenuButton1">
-                <li><a class="btn btn-sm adminJobUnFeatured" data-id="{{ $row->id }}"><?php echo __(
-                            'messages.front_settings.remove_featured'
-                        ) ?></a>
-                </li>
-            </ul>
-            @endif
-        </div>
+        <button type="button"
+            class="btn btn-sm btn-success nasira-feature-btn adminJobUnFeatured"
+            data-id="{{ $row->id }}"
+            title="Expires On {{ Carbon\Carbon::parse($row->featured->end_time)->translatedFormat('jS M, Y') }}"
+            data-bs-toggle="tooltip">
+            {{ __('messages.front_settings.featured') }}
+            <i class="far fa-check-circle ms-1"></i>
+        </button>
+    @endif
 </div>

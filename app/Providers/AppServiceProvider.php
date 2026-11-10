@@ -59,6 +59,12 @@ class AppServiceProvider extends ServiceProvider
         app()->useLangPath(base_path('lang'));
         Job::observe(JobObserver::class);
 
+        // Root-relative Livewire script so local artisan serve never gets
+        // https://127.0.0.1/... (HSTS/APP_URL) which blanks admin tables via wire:cloak.
+        config([
+            'livewire.asset_url' => '/vendor/livewire/livewire.min.js',
+        ]);
+
         if ($this->isLocalHostRequest()) {
             // Local artisan serve is HTTP-only — never force HTTPS or secure cookies here.
             // Pin app/asset/media URLs to the current local host so admin CSS and

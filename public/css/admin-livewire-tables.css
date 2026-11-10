@@ -1,0 +1,245 @@
+/* Admin Livewire tables — one clear toolbar row */
+.nasira-table-toolbar,
+.lwt-toolbar.nasira-table-toolbar {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 0.75rem;
+  margin: 0 0 1.25rem !important;
+  width: 100%;
+  padding: 0 !important;
+}
+
+.nasira-table-toolbar__search {
+  flex: 1 1 auto;
+  min-width: 180px;
+  max-width: 320px;
+}
+
+.nasira-table-toolbar .lwt-search {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  margin: 0 !important;
+}
+
+.nasira-table-toolbar .lwt-search__input,
+.nasira-table-toolbar .lwt-search input[type="text"] {
+  width: 100%;
+  height: 42px;
+  min-height: 42px;
+  padding: 0.5rem 2.25rem 0.5rem 0.85rem;
+  border: 1px solid #e4e6ef;
+  border-radius: 0.475rem;
+  background: #fff;
+  font-size: 0.925rem;
+}
+
+.nasira-table-toolbar .lwt-search__clear {
+  position: absolute;
+  right: 0.55rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  line-height: 1;
+  padding: 0;
+}
+
+.nasira-table-toolbar__perpage,
+.nasira-table-toolbar .lwt-perpage {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 0.45rem;
+  margin: 0 !important;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.nasira-table-toolbar .lwt-perpage__label {
+  margin: 0 !important;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #5e6278;
+}
+
+.nasira-table-toolbar .lwt-perpage__select,
+.nasira-table-toolbar .lwt-perpage select {
+  min-width: 72px;
+  height: 42px;
+  min-height: 42px;
+  width: auto !important;
+  padding: 0.35rem 1.6rem 0.35rem 0.65rem;
+  border: 1px solid #e4e6ef;
+  border-radius: 0.475rem;
+  background: #fff;
+}
+
+.nasira-table-toolbar__filters,
+.nasira-table-toolbar__actions {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  margin: 0 !important;
+}
+
+.nasira-table-toolbar__actions {
+  margin-left: auto !important;
+}
+
+.nasira-table-toolbar__actions .btn {
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* Clear Filter button (not icon-only) */
+.nasira-filter {
+  position: relative;
+  margin: 0 !important;
+}
+
+.nasira-filter__btn {
+  height: 42px !important;
+  min-height: 42px !important;
+  max-height: 42px !important;
+  min-width: 108px;
+  padding: 0 0.95rem !important;
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.4rem !important;
+  border: 1px solid #e4e6ef !important;
+  border-radius: 0.475rem !important;
+  background: #fff !important;
+  color: #3f4254 !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1 !important;
+  box-shadow: none !important;
+  white-space: nowrap !important;
+}
+
+.nasira-filter__btn > * {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Kill Livewire stock Filters button layout if it still appears */
+.lwt-btn,
+button.lwt-btn {
+  height: 42px !important;
+  min-height: 42px !important;
+  padding: 0 0.95rem !important;
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  border: 1px solid #e4e6ef !important;
+  border-radius: 0.475rem !important;
+  background: #fff !important;
+  color: #3f4254 !important;
+  font-weight: 600;
+  white-space: nowrap !important;
+}
+
+.lwt-btn__icon,
+.lwt-btn__caret {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+}
+
+.nasira-feature-btn {
+  white-space: nowrap;
+  min-width: 118px;
+}
+
+.nasira-filter__btn:hover,
+.nasira-filter__btn:focus,
+.nasira-filter__btn.show {
+  background: #f5f8fa !important;
+  border-color: #b5b5c3 !important;
+  color: #181c32 !important;
+}
+
+.nasira-filter__btn i {
+  font-size: 0.85rem;
+  color: #009ef7;
+}
+
+.nasira-filter__btn::after {
+  margin-left: 0.15rem;
+}
+
+.nasira-filter .dropdown-menu {
+  min-width: 280px;
+  max-width: 340px;
+  padding: 0;
+  border: 1px solid #eff2f5;
+  border-radius: 0.65rem;
+  box-shadow: 0 10px 30px rgba(30, 43, 36, 0.12);
+  margin-top: 0.4rem !important;
+}
+
+.nasira-filter__head {
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid #eff2f5;
+}
+
+.nasira-filter__head h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #181c32;
+}
+
+.nasira-filter__body {
+  padding: 1rem 1.1rem;
+}
+
+.nasira-filter__body .form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #5e6278;
+  margin-bottom: 0.35rem;
+}
+
+.nasira-filter__body .mb-5 {
+  margin-bottom: 0.85rem !important;
+}
+
+.nasira-filter__body .form-select,
+.nasira-filter__body select {
+  min-height: 40px;
+}
+
+.nasira-filter__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding-top: 0.25rem;
+}
+
+@media (max-width: 991.98px) {
+  .nasira-table-toolbar,
+  .lwt-toolbar.nasira-table-toolbar {
+    flex-wrap: wrap !important;
+  }
+
+  .nasira-table-toolbar__search {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+
+  .nasira-table-toolbar__actions {
+    margin-left: 0 !important;
+  }
+}

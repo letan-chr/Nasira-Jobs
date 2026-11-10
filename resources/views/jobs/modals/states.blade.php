@@ -21,7 +21,7 @@
                 <div class="mb-5">
                     {{ Form::label('country_id', __('messages.state.country_name') . ':', ['class' => 'form-label']) }}
                     <span class="required"></span>
-                    {{ Form::select('country_id', $countries, null, ['class' => 'form-control', 'required', 'id' => 'jobCountryID', 'placeholder' => __('messages.company.select_country')]) }}
+                    {{ Form::select('country_id', $countries, getDefaultCountryId(), ['class' => 'form-control', 'required', 'id' => 'jobCountryID', 'placeholder' => __('messages.company.select_country')]) }}
                 </div>
             </div>
             <div class="modal-footer pt-0">
