@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Sitemap: /sitemap.xml
+Sitemap: /sitemap-pages.xml
+Sitemap: /sitemap-jobs.xml
+Sitemap: /sitemap-companies.xml
+Sitemap: /sitemap-posts.xml
+Sitemap: /sitemap-solutions.xml
+Sitemap: /sitemap-cv-design.xml

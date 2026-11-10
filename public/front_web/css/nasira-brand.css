@@ -1,0 +1,1094 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap");
+
+:root {
+  --nasira-green: #006837;
+  --nasira-orange: #f37021;
+  --nasira-orange-hover: #e06215;
+  --nasira-text: #1e2b24;
+  --nasira-muted: #5f6e66;
+  --nasira-nav: #2a3831;
+  --nasira-font: "Plus Jakarta Sans", "Poppins", sans-serif;
+  --nasira-script: "Caveat", cursive;
+  --bs-primary: #006837;
+  --bs-primary-rgb: 0, 104, 55;
+}
+
+body {
+  font-family: var(--nasira-font) !important;
+  color: var(--nasira-text);
+}
+
+.header-padding { display: none !important; height: 0 !important; }
+
+.bg-primary { background-color: var(--nasira-green) !important; }
+.text-primary,
+.primary-link-hover:hover,
+.text-hover-primary:hover { color: var(--nasira-green) !important; }
+.btn-primary {
+  color: #fff !important;
+  background-color: var(--nasira-orange) !important;
+  border-color: var(--nasira-orange) !important;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--nasira-orange-hover) !important;
+  border-color: var(--nasira-orange-hover) !important;
+  color: #fff !important;
+}
+
+/* ========== HEADER — clean professional ========== */
+header.nasira-header {
+  --nasira-header-h: 88px;
+  background: #ffffff !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  height: var(--nasira-header-h) !important;
+  min-height: var(--nasira-header-h) !important;
+  max-height: var(--nasira-header-h) !important;
+  padding: 0 !important;
+  display: block !important;
+  position: sticky;
+  top: 0;
+  z-index: 1040;
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.06) !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(0, 104, 55, 0.08) !important;
+  overflow: visible !important;
+}
+
+header.nasira-header .nasira-navbar {
+  padding: 0 !important;
+  width: 100%;
+  height: 100%;
+  min-height: var(--nasira-header-h);
+}
+
+header.nasira-header .nasira-nav-shell {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 0.5rem;
+  height: var(--nasira-header-h);
+  min-height: var(--nasira-header-h);
+  max-width: 1320px;
+  position: relative;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+header.nasira-header .nasira-brand {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  align-self: center;
+  height: auto;
+  line-height: 0;
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+header.nasira-header .nasira-brand img {
+  height: 64px !important;
+  width: auto !important;
+  max-height: 64px !important;
+  max-width: 280px !important;
+  object-fit: contain !important;
+  object-position: left center;
+  display: block;
+  padding: 0 !important;
+  margin: auto 0 !important;
+}
+
+header.nasira-header .nasira-nav-mobile-tools {
+  display: none;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: auto;
+  z-index: 2;
+}
+
+header.nasira-header .nasira-toggler {
+  border: 0 !important;
+  padding: 0.4rem !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+header.nasira-header .nasira-toggler-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 22px;
+}
+
+header.nasira-header .nasira-toggler-lines .icon-bar,
+header.nasira-header .navbar-toggler-icon .icon-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--nasira-green) !important;
+}
+
+header.nasira-header .nasira-nav-collapse {
+  flex-grow: 1;
+  display: flex !important;
+  flex-basis: auto;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem 0.55rem;
+  height: 100%;
+}
+
+header.nasira-header .nasira-nav-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+header.nasira-header .nasira-nav-links > .nav-item {
+  margin: 0;
+}
+
+header.nasira-header .nasira-nav-link {
+  color: var(--nasira-nav) !important;
+  font-weight: 650 !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 0;
+  padding: 0.45rem 0.55rem !important;
+  position: relative;
+  white-space: nowrap;
+  border-radius: 8px;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+header.nasira-header .nasira-nav-link:hover {
+  color: var(--nasira-green) !important;
+  background: rgba(0, 104, 55, 0.06);
+}
+
+header.nasira-header .nasira-nav-link.is-active,
+header.nasira-header .nasira-nav-link.header-navbar-color-active {
+  color: var(--nasira-green) !important;
+}
+
+header.nasira-header .nasira-nav-link.is-active::after,
+header.nasira-header .nasira-nav-link.header-navbar-color-active::after {
+  content: "";
+  position: absolute;
+  left: 0.38rem;
+  right: 0.38rem;
+  bottom: 0.1rem;
+  height: 2px;
+  background: var(--nasira-green);
+  border-radius: 2px;
+}
+
+header.nasira-header .nasira-nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  margin-left: 0.15rem;
+  height: 100%;
+}
+
+header.nasira-header .nasira-icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--nasira-green) !important;
+  background: rgba(0, 104, 55, 0.06);
+  text-decoration: none !important;
+  transition: background 0.15s ease;
+}
+
+header.nasira-header .nasira-icon-btn:hover {
+  background: rgba(0, 104, 55, 0.12);
+}
+
+header.nasira-header .nasira-auth-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+header.nasira-header .nasira-dd {
+  position: relative;
+}
+
+header.nasira-header .btn-nasira-login,
+header.nasira-header .btn-nasira-signup {
+  margin: 0 !important;
+  border-radius: 999px !important;
+  padding: 0.42rem 1rem !important;
+  font-weight: 700 !important;
+  font-size: 0.8125rem !important;
+  line-height: 1.2 !important;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+  text-decoration: none !important;
+}
+
+header.nasira-header .btn-nasira-login {
+  color: #fff !important;
+  background: var(--nasira-orange) !important;
+  border: 1.5px solid var(--nasira-orange) !important;
+}
+
+header.nasira-header .btn-nasira-login:hover {
+  background: var(--nasira-orange-hover) !important;
+  border-color: var(--nasira-orange-hover) !important;
+  color: #fff !important;
+}
+
+header.nasira-header .btn-nasira-login i {
+  font-size: 0.65rem;
+  opacity: 0.9;
+}
+
+header.nasira-header .nasira-user-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.65rem 0.25rem 0.25rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 104, 55, 0.12);
+  background: #fff;
+  text-decoration: none !important;
+  color: var(--nasira-text) !important;
+  max-width: 220px;
+}
+
+header.nasira-header .nasira-user-chip img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+header.nasira-header .nasira-user-name {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+header.nasira-header .nasira-user-chip i {
+  font-size: 0.65rem;
+  color: var(--nasira-muted);
+}
+
+header.nasira-header .nasira-submenu,
+header.nasira-header .submenu {
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  right: 0;
+  min-width: 200px;
+  margin: 0;
+  padding: 0.45rem !important;
+  list-style: none;
+  background: #fff;
+  border: 1px solid rgba(0, 104, 55, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(30, 43, 36, 0.12);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+  z-index: 1100;
+  display: block !important;
+}
+
+header.nasira-header .nasira-dd:hover > .nasira-submenu,
+header.nasira-header .nasira-dd:focus-within > .nasira-submenu,
+header.nasira-header .login_btn:hover > .submenu,
+header.nasira-header .register_btn:hover > .submenu,
+header.nasira-header .nasira-user-dd:hover > .submenu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+header.nasira-header .nasira-submenu .nav-link,
+header.nasira-header .submenu .nav-link {
+  display: block !important;
+  padding: 0.55rem 0.75rem !important;
+  border-radius: 8px;
+  color: var(--nasira-text) !important;
+  font-weight: 600 !important;
+  font-size: 0.84rem !important;
+  text-decoration: none !important;
+  margin: 0 !important;
+}
+
+header.nasira-header .nasira-submenu .nav-link:hover,
+header.nasira-header .submenu .nav-link:hover,
+header.nasira-header .nasira-submenu .nav-link.active,
+header.nasira-header .submenu .nav-link.active {
+  background: rgba(0, 104, 55, 0.07);
+  color: var(--nasira-green) !important;
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  header.nasira-header .nasira-nav-link {
+    padding: 0.4rem 0.4rem !important;
+    font-size: 0.84rem !important;
+  }
+
+  header.nasira-header .btn-nasira-login,
+  header.nasira-header .btn-nasira-signup {
+    padding: 0.4rem 0.85rem !important;
+    font-size: 0.78rem !important;
+  }
+
+  header.nasira-header .nasira-user-name {
+    max-width: 90px;
+  }
+
+  header.nasira-header .nasira-brand img {
+    max-width: 240px !important;
+    height: 56px !important;
+    max-height: 56px !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+  header.nasira-header {
+    --nasira-header-h: 72px;
+  }
+
+  header.nasira-header .nasira-brand img {
+    height: 48px !important;
+    max-height: 48px !important;
+    max-width: 190px !important;
+  }
+
+  header.nasira-header .nasira-nav-shell {
+    align-items: stretch;
+  }
+
+  header.nasira-header .nasira-nav-mobile-tools {
+    align-self: center;
+  }
+
+  header.nasira-header .nasira-nav-mobile-tools {
+    display: flex;
+  }
+
+  header.nasira-header .nasira-nav-collapse {
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0.75rem 1rem 1.1rem;
+    background: #fff;
+    border-bottom: 1px solid rgba(0, 104, 55, 0.1);
+    box-shadow: 0 18px 36px rgba(30, 43, 36, 0.1);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.35rem;
+    max-height: min(78vh, 640px);
+    overflow: auto;
+  }
+
+  header.nasira-header .nasira-nav-collapse.show {
+    display: flex !important;
+  }
+
+  header.nasira-header .nasira-nav-links {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    margin: 0;
+    gap: 0.15rem;
+  }
+
+  header.nasira-header .nasira-nav-link {
+    padding: 0.7rem 0.85rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  header.nasira-header .nasira-nav-link.is-active::after,
+  header.nasira-header .nasira-nav-link.header-navbar-color-active::after {
+    display: none;
+  }
+
+  header.nasira-header .nasira-nav-link.is-active,
+  header.nasira-header .nasira-nav-link.header-navbar-color-active {
+    background: rgba(0, 104, 55, 0.08);
+  }
+
+  header.nasira-header .nasira-nav-cta {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 0.65rem 0 0;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(0, 104, 55, 0.08);
+    gap: 0.55rem;
+  }
+
+  header.nasira-header .nasira-auth-group {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  header.nasira-header .btn-nasira-login,
+  header.nasira-header .btn-nasira-signup {
+    width: 100%;
+    justify-content: center;
+    padding: 0.7rem 1rem !important;
+  }
+
+  header.nasira-header .nasira-submenu,
+  header.nasira-header .submenu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    box-shadow: none;
+    border: 0;
+    padding: 0.15rem 0 0.35rem 0.75rem !important;
+    min-width: 0;
+    background: transparent;
+  }
+
+  header.nasira-header .nasira-user-chip {
+    width: 100%;
+    max-width: none;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 575.98px) {
+  header.nasira-header {
+    --nasira-header-h: 64px;
+  }
+
+  header.nasira-header .nasira-brand img {
+    height: 42px !important;
+    max-height: 42px !important;
+    max-width: min(168px, 48vw) !important;
+  }
+}
+
+/* ========== HERO — clean full-bleed composition ========== */
+.nasira-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: clamp(520px, 78vh, 720px);
+  background: #0f2419;
+  color: #fff;
+}
+
+.nasira-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.nasira-hero-city {
+  position: absolute;
+  inset: 0;
+  background: url("../images/nasira-city-bg.png") center / cover no-repeat;
+  transform: scale(1.04);
+  animation: nasira-hero-pan 18s ease-in-out infinite alternate;
+}
+
+.nasira-hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(105deg, rgba(8, 28, 18, 0.92) 0%, rgba(8, 28, 18, 0.78) 38%, rgba(8, 28, 18, 0.28) 62%, rgba(8, 28, 18, 0.18) 100%),
+    linear-gradient(180deg, rgba(8, 28, 18, 0.25) 0%, transparent 35%, rgba(8, 28, 18, 0.45) 100%);
+}
+
+.nasira-hero-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+  align-items: end;
+  gap: 1rem;
+  min-height: clamp(520px, 78vh, 720px);
+  padding-top: 2.25rem;
+  padding-bottom: 0;
+}
+
+.nasira-hero-copy {
+  align-self: center;
+  width: min(100%, 560px);
+  padding: 1.5rem 0 2.5rem;
+  animation: nasira-hero-fade 0.85s ease-out both;
+}
+
+.nasira-hero-brand {
+  margin: 0 0 0.65rem;
+  font-family: var(--nasira-script);
+  font-size: clamp(2.6rem, 5vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+
+.nasira-hero-title {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.85rem, 3.4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: #fff;
+  max-width: 12ch;
+}
+
+.nasira-hero-sub {
+  margin: 0 0 1.5rem;
+  max-width: 28rem;
+  font-size: clamp(0.98rem, 1.4vw, 1.1rem);
+  line-height: 1.55;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.nasira-hero-person {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  max-height: min(88vh, 640px);
+  margin-left: auto;
+  object-fit: contain;
+  object-position: bottom right;
+  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.28));
+  animation: nasira-hero-rise 1s ease-out both;
+  user-select: none;
+  pointer-events: none;
+}
+
+.nasira-search {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr) auto;
+  gap: 0.45rem;
+  align-items: center;
+  width: 100%;
+  max-width: 560px;
+  padding: 0.4rem;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 16px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(8px);
+}
+
+.nasira-search-field-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  padding: 0.15rem 0.7rem;
+  position: relative;
+  background: #f4f8f5;
+  border-radius: 12px;
+  min-height: 48px;
+}
+
+.nasira-search-field-wrap i {
+  color: var(--nasira-green);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.nasira-search input {
+  border: 0;
+  outline: 0;
+  width: 100%;
+  min-width: 0;
+  background: transparent;
+  font-family: var(--nasira-font);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--nasira-text);
+  padding: 0.65rem 0;
+}
+
+.nasira-search input::placeholder {
+  color: #8d9a93;
+}
+
+.nasira-search button {
+  border: 0;
+  border-radius: 12px;
+  background: var(--nasira-orange);
+  color: #fff;
+  font-family: var(--nasira-font);
+  font-weight: 800;
+  font-size: 0.9rem;
+  padding: 0.85rem 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  min-height: 48px;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.nasira-search button:hover {
+  background: var(--nasira-orange-hover);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+@keyframes nasira-hero-pan {
+  from { transform: scale(1.04) translate3d(0, 0, 0); }
+  to { transform: scale(1.08) translate3d(-1.5%, 0, 0); }
+}
+
+@keyframes nasira-hero-fade {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes nasira-hero-rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1199.98px) {
+  .nasira-hero-person {
+    max-width: 440px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .nasira-hero {
+    min-height: auto;
+  }
+
+  .nasira-hero-inner {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    align-items: start;
+    padding-top: 1.75rem;
+    padding-bottom: 0;
+    gap: 0.5rem;
+  }
+
+  .nasira-hero-copy {
+    width: 100%;
+    max-width: 36rem;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0.5rem 0 0.75rem;
+  }
+
+  .nasira-hero-title,
+  .nasira-hero-sub {
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .nasira-search {
+    grid-template-columns: 1fr;
+    max-width: none;
+    margin: 0 auto;
+    border-radius: 18px;
+    padding: 0.65rem;
+  }
+
+  .nasira-search button {
+    width: 100%;
+  }
+
+  .nasira-hero-media::after {
+    background:
+      linear-gradient(180deg, rgba(8, 28, 18, 0.9) 0%, rgba(8, 28, 18, 0.7) 45%, rgba(8, 28, 18, 0.4) 100%);
+  }
+
+  .nasira-hero-person {
+    margin: 0.25rem auto 0;
+    max-width: min(72vw, 360px);
+    max-height: none;
+    animation: none;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .nasira-hero-brand {
+    font-size: 2.35rem;
+  }
+
+  .nasira-hero-title {
+    font-size: 1.7rem;
+  }
+
+  .nasira-hero-sub {
+    font-size: 0.95rem;
+    margin-bottom: 1.15rem;
+  }
+
+  .nasira-hero-person {
+    max-width: min(82vw, 300px);
+  }
+}
+
+/* ========== Categories (after hero) ========== */
+.nasira-categories-section {
+  position: relative;
+  padding: 4.5rem 0 4rem;
+  background:
+    radial-gradient(ellipse at 10% 0%, rgba(0, 104, 55, 0.07), transparent 45%),
+    radial-gradient(ellipse at 90% 10%, rgba(243, 112, 33, 0.06), transparent 40%),
+    #f7faf8;
+}
+
+.nasira-section-head {
+  max-width: 40rem;
+  margin: 0 auto 2.25rem;
+  text-align: center;
+}
+
+.nasira-section-kicker {
+  margin: 0 0 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--nasira-green);
+}
+
+.nasira-section-head h2 {
+  margin: 0 0 0.55rem;
+  font-size: clamp(1.55rem, 2.6vw, 2.1rem);
+  font-weight: 800;
+  color: var(--nasira-text);
+  letter-spacing: -0.02em;
+}
+
+.nasira-section-lead {
+  margin: 0;
+  color: var(--nasira-muted);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.nasira-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.nasira-cat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1rem 1.05rem;
+  background: #fff;
+  border: 1px solid rgba(0, 104, 55, 0.1);
+  border-radius: 14px;
+  text-decoration: none !important;
+  color: inherit;
+  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  min-height: 88px;
+}
+
+.nasira-cat-item:hover {
+  border-color: rgba(0, 104, 55, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(30, 43, 36, 0.08);
+  color: inherit;
+}
+
+.nasira-cat-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(0, 104, 55, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.nasira-cat-icon img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.nasira-cat-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.nasira-cat-body strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--nasira-text);
+  line-height: 1.3;
+  margin-bottom: 0.15rem;
+}
+
+.nasira-cat-body small {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--nasira-muted);
+  font-weight: 600;
+}
+
+.nasira-cat-go {
+  color: #9aaba2;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.nasira-cat-item:hover .nasira-cat-go {
+  color: var(--nasira-orange);
+  transform: translateX(3px);
+}
+
+.nasira-section-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.75rem;
+}
+
+.nasira-section-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.75rem 1.35rem;
+  border-radius: 999px;
+  background: var(--nasira-orange);
+  color: #fff !important;
+  font-weight: 800;
+  font-size: 0.9rem;
+  text-decoration: none !important;
+  transition: background 0.15s ease;
+}
+
+.nasira-section-btn:hover {
+  background: var(--nasira-orange-hover);
+  color: #fff !important;
+}
+
+@media (max-width: 1199.98px) {
+  .nasira-cat-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 991.98px) {
+  .nasira-categories-section {
+    padding: 3.25rem 0 3rem;
+  }
+
+  .nasira-cat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575.98px) {
+  .nasira-cat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nasira-cat-item {
+    min-height: 76px;
+  }
+}
+
+/* ========== Latest jobs ========== */
+.nasira-jobs-section {
+  position: relative;
+  padding: 4.5rem 0 4rem;
+  background: #fff;
+}
+
+.nasira-job-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.nasira-job-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.95rem;
+  align-items: center;
+  padding: 1.1rem 1.15rem;
+  background: #fff;
+  border: 1px solid rgba(0, 104, 55, 0.1);
+  border-radius: 16px;
+  text-decoration: none !important;
+  color: inherit;
+  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  min-height: 118px;
+}
+
+.nasira-job-item:hover {
+  border-color: rgba(0, 104, 55, 0.32);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(30, 43, 36, 0.08);
+  color: inherit;
+}
+
+.nasira-job-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: #f4f8f5;
+  border: 1px solid rgba(0, 104, 55, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.nasira-job-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 0.35rem;
+}
+
+.nasira-job-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+}
+
+.nasira-job-top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.nasira-job-title {
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--nasira-text);
+  line-height: 1.3;
+}
+
+.nasira-job-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(243, 112, 33, 0.12);
+  color: var(--nasira-orange);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.nasira-job-company {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--nasira-green);
+}
+
+.nasira-job-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.85rem;
+  color: var(--nasira-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.nasira-job-meta i {
+  color: var(--nasira-green);
+  margin-right: 0.25rem;
+  font-size: 0.72rem;
+}
+
+.nasira-job-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.15rem;
+}
+
+.nasira-job-tags span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(0, 104, 55, 0.08);
+  color: var(--nasira-green);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.nasira-job-go {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(0, 104, 55, 0.08);
+  color: var(--nasira-green);
+  font-size: 0.8rem;
+  font-weight: 800;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.nasira-job-item:hover .nasira-job-go {
+  background: var(--nasira-orange);
+  color: #fff;
+}
+
+@media (max-width: 991.98px) {
+  .nasira-jobs-section {
+    padding: 3.25rem 0 3rem;
+  }
+
+  .nasira-job-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .nasira-job-item {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .nasira-job-go {
+    grid-column: 1 / -1;
+    justify-content: center;
+  }
+}

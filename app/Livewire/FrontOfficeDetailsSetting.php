@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Livewire;
+
+use Livewire\Component;
+
+class FrontOfficeDetailsSetting extends Component
+{
+    public $envData,$setting, $sectionName, $envSetting, $languages;
+    public function mount($envData, $setting, $sectionName, $envSetting, $languages) {
+        $this->envData = $envData;
+        $this->setting = $setting;
+        $this->sectionName = $sectionName;
+        $this->envSetting = $envSetting;
+        $this->languages = $languages;
+    }
+
+    public function placeholder()
+    {
+        return view('livewire_lazy_load.listing-skeleton-filter-no-button-search');
+    }
+    public function render()
+    {
+        return view('livewire.front-office-details-setting');
+    }
+}

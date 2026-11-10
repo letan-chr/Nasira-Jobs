@@ -1,0 +1,129 @@
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The Laravel Framework.",
+    "version": "14.4.3",
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
+    "license": "MIT",
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "unicodeveloper/laravel-paystack",
+                "version": "1.2.1",
+                "dist": {
+                    "url": "https://github.com/unicodeveloper/laravel-paystack/archive/refs/tags/1.2.0.zip",
+                    "type": "zip"
+                },
+                "require": {
+                    "php": "^7.2|^8.0|^8.1|^8.2",
+                    "illuminate/support": "~6|~7|~8|~9|^10.0|^11.0|^12.0",
+                    "guzzlehttp/guzzle": "~6|~7|~8|~9"
+                },
+                "autoload": {
+                    "files": [
+                        "src/Support/helpers.php"
+                    ],
+                    "psr-4": {
+                        "Unicodeveloper\\Paystack\\": "src/"
+                    }
+                },
+                "extra": {
+                    "laravel": {
+                        "providers": [
+                            "Unicodeveloper\\Paystack\\PaystackServiceProvider"
+                        ],
+                        "aliases": {
+                            "Paystack": "Unicodeveloper\\Paystack\\Facades\\Paystack"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "guzzlehttp/guzzle": "^7.2",
+        "konekt/html": "^6.6",
+        "laracasts/flash": "^3.2.6",
+        "laravel/cashier": "^15.6|^16.0",
+        "laravel/framework": "^12.0",
+        "laravel/socialite": "^5.14",
+        "laravel/tinker": "^2.9",
+        "laravel/ui": "^4.5",
+        "league/flysystem-aws-s3-v3": "^3.0",
+        "livewire/livewire": "^3.5",
+        "maatwebsite/excel": "^3.1.55",
+        "mariuzzo/laravel-js-localization": "^2.0",
+        "opcodesio/log-viewer": "^3.10",
+        "predis/predis": "2.0",
+        "rappasoft/laravel-livewire-tables": "^3.2",
+        "rennokki/laravel-eloquent-query-cache": "^3.6",
+        "spatie/laravel-cookie-consent": "^3.5",
+        "spatie/laravel-medialibrary": "^11.0",
+        "spatie/laravel-permission": "^6.0",
+        "spatie/schema-org": "^3.23",
+        "srmklive/paypal": "^3.0.22|^3.2",
+        "tightenco/ziggy": "^2.0",
+        "unicodeveloper/laravel-paystack": "1.2.1"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.13",
+        "fakerphp/faker": "^1.23",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.1",
+        "phpunit/phpunit": "^11.0",
+        "spatie/laravel-ignition": "^2.4"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        },
+        "audit": {
+            "block-insecure": false
+        }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        },
+        "files": [
+            "app/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ]
+    }
+}

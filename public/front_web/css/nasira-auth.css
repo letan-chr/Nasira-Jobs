@@ -1,0 +1,309 @@
+/* Split login / register layout */
+.nasira-auth-page {
+  min-height: calc(100vh - var(--nasira-header-h, 96px));
+  background: #f7faf8;
+}
+
+.nasira-auth-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  min-height: calc(100vh - var(--nasira-header-h, 96px));
+}
+
+.nasira-auth-visual {
+  position: relative;
+  overflow: hidden;
+  background: #1e2b24;
+  color: #fff;
+  padding: 3.5rem 3rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+.nasira-auth-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../images/nasira-city-bg.png") center / cover no-repeat;
+  opacity: 0.42;
+  pointer-events: none;
+}
+
+.nasira-auth-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(145deg, rgba(0, 104, 55, 0.45), rgba(30, 43, 36, 0.28)),
+    linear-gradient(180deg, transparent 25%, rgba(0, 0, 0, 0.28) 100%);
+  pointer-events: none;
+}
+
+.nasira-auth-visual-content {
+  position: relative;
+  z-index: 2;
+  max-width: 460px;
+}
+
+.nasira-auth-kicker {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffd7bf;
+  margin-bottom: 0.85rem;
+}
+
+.nasira-auth-visual h1 {
+  font-size: clamp(1.8rem, 2.6vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0.85rem;
+}
+
+.nasira-auth-visual p {
+  font-size: 1.02rem;
+  line-height: 1.6;
+  opacity: 0.92;
+  margin-bottom: 1.5rem;
+}
+
+.nasira-auth-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.nasira-auth-points li {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.nasira-auth-points i {
+  color: #f37021;
+  margin-top: 0.15rem;
+}
+
+.nasira-auth-form-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+  background: #fff;
+}
+
+.nasira-auth-card {
+  width: 100%;
+  max-width: 460px;
+}
+
+.nasira-auth-card h2 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #1e2b24;
+  margin-bottom: 0.35rem;
+}
+
+.nasira-auth-card .nasira-auth-sub {
+  color: #5f6e66;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.nasira-auth-field {
+  margin-bottom: 1rem;
+}
+
+.nasira-auth-field label {
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #2a3831;
+  margin-bottom: 0.4rem;
+}
+
+.nasira-auth-field label .req {
+  color: #dc2626;
+}
+
+.nasira-auth-field .form-control,
+.nasira-auth-field .form-select,
+.nasira-auth-field select {
+  width: 100%;
+  border: 1px solid rgba(0, 104, 55, 0.18);
+  border-radius: 12px;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.92rem;
+  background: #fbfdfc;
+  color: #1e2b24;
+  min-height: 48px;
+}
+
+.nasira-auth-field .form-control:focus,
+.nasira-auth-field select:focus {
+  outline: none;
+  border-color: #006837;
+  box-shadow: 0 0 0 3px rgba(0, 104, 55, 0.12);
+  background: #fff;
+}
+
+.nasira-auth-pass {
+  position: relative;
+}
+
+.nasira-auth-pass .form-control {
+  padding-right: 2.6rem;
+}
+
+.nasira-auth-pass .change-type {
+  position: absolute !important;
+  right: 0.9rem !important;
+  left: auto !important;
+  top: 50% !important;
+  bottom: auto !important;
+  transform: translateY(-50%);
+  color: #5f6e66;
+  cursor: pointer;
+  margin: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+}
+
+.nasira-auth-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+.nasira-auth-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin: 0.35rem 0 1.1rem;
+  font-size: 0.88rem;
+}
+
+.nasira-auth-meta a {
+  color: #006837;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nasira-auth-meta a:hover {
+  color: #f37021;
+}
+
+.nasira-auth-btn {
+  width: 100%;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.85rem 1.2rem;
+  font-weight: 800;
+  font-size: 0.95rem;
+  background: #f37021;
+  color: #fff !important;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  text-decoration: none !important;
+}
+
+.nasira-auth-btn:hover {
+  background: #e06215;
+  color: #fff !important;
+}
+
+.nasira-auth-btn--ghost {
+  background: #fff;
+  color: #006837 !important;
+  border: 1.5px solid rgba(0, 104, 55, 0.3);
+}
+
+.nasira-auth-btn--ghost:hover {
+  background: rgba(0, 104, 55, 0.06);
+  color: #006837 !important;
+}
+
+.nasira-auth-switch {
+  margin-top: 1.15rem;
+  text-align: center;
+  color: #5f6e66;
+  font-size: 0.9rem;
+}
+
+.nasira-auth-switch a {
+  color: #006837;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.nasira-auth-social {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.nasira-auth-guest {
+  display: none;
+  background: #f4f8f5;
+  border: 1px solid rgba(0, 104, 55, 0.12);
+  border-radius: 14px;
+  padding: 1.1rem;
+  margin-top: 0.35rem;
+}
+
+.nasira-auth-guest.is-visible {
+  display: block;
+}
+
+.nasira-auth-guest p {
+  color: #5f6e66;
+  margin-bottom: 0.9rem;
+  font-size: 0.92rem;
+}
+
+.nasira-auth-account-fields.is-hidden {
+  display: none !important;
+}
+
+@media (max-width: 991.98px) {
+  .nasira-auth-split {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .nasira-auth-visual {
+    min-height: 240px;
+    padding: 2rem 1.4rem;
+    align-items: flex-end;
+  }
+
+  .nasira-auth-visual h1 {
+    font-size: 1.55rem;
+  }
+
+  .nasira-auth-points {
+    display: none;
+  }
+
+  .nasira-auth-form-side {
+    padding: 1.75rem 1.1rem 2.5rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .nasira-auth-row {
+    grid-template-columns: 1fr;
+  }
+}
