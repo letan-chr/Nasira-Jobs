@@ -49,11 +49,11 @@
                         <div class="nasira-solutions-mega" role="menu">
                             <div class="nasira-solutions-mega-inner">
                                 @foreach ($solutionGroups as $groupKey => $group)
-                                    <div class="nasira-solutions-col" data-group="{{ $groupKey }}">
+                                    <div class="nasira-solutions-col {{ $groupKey === 'convert' ? 'nasira-solutions-col--convert' : '' }}" data-group="{{ $groupKey }}">
                                         <div class="nasira-solutions-col-head">
                                             <span class="nasira-solutions-col-title">{{ $group['title'] }}</span>
                                         </div>
-                                        <ul class="nasira-solutions-list">
+                                        <ul class="nasira-solutions-list {{ $groupKey === 'convert' ? 'nasira-solutions-list--multi-col' : '' }}">
                                             @foreach ($group['items'] as $item)
                                                 <li>
                                                     <a href="{{ !empty($item['route']) ? route($item['route']) : route('front.solutions.show', $item['slug']) }}">

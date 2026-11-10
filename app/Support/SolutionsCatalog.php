@@ -211,7 +211,10 @@ class SolutionsCatalog
                 if (($group['section'] ?? '') !== $section) {
                     continue;
                 }
-                $limit = $section === 'Tools' ? 8 : ($section === 'Career' ? 6 : 5);
+                // Convert has many tools — show more; layout uses a 2-column list.
+                $limit = $section === 'Convert' ? 12
+                    : ($section === 'Tools' ? 8
+                    : ($section === 'Career' ? 6 : 5));
                 foreach (array_slice($group['items'], 0, $limit) as $item) {
                     $items[] = $item;
                 }

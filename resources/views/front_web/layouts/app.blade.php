@@ -116,8 +116,8 @@
         </style>
     @endif
     <link href="{{ mix('css/front-pages.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('front_web/css/nasira-brand.css') }}?v=15" rel="stylesheet" type="text/css">
-    <link href="{{ asset('front_web/css/nasira-solutions.css') }}?v=14" rel="stylesheet" type="text/css">
+    <link href="{{ asset('front_web/css/nasira-brand.css') }}?v=16" rel="stylesheet" type="text/css">
+    <link href="{{ asset('front_web/css/nasira-solutions.css') }}?v=18" rel="stylesheet" type="text/css">
     @include('partials.appearance-css')
 
     @yield('page_css')
@@ -172,15 +172,43 @@
         (function () {
             var item = document.querySelector('.nasira-solutions-item');
             var trigger = document.querySelector('.nasira-solutions-trigger');
-            if (!item || !trigger) return;
+            var mega = document.querySelector('.nasira-solutions-mega');
+            if (!item || !trigger || !mega) return;
+
+            function isMobileNav() {
+                return window.matchMedia('(max-width: 991.98px)').matches;
+            }
+
+            function clampMega() {
+                if (isMobileNav()) {
+                    mega.style.removeProperty('--nasira-mega-shift');
+                    return;
+                }
+                mega.style.setProperty('--nasira-mega-shift', '0px');
+                var rect = mega.getBoundingClientRect();
+                var pad = 16;
+                var shift = 0;
+                if (rect.right > window.innerWidth - pad) {
+                    shift -= rect.right - (window.innerWidth - pad);
+                }
+                if (rect.left + shift < pad) {
+                    shift += pad - (rect.left + shift);
+                }
+                mega.style.setProperty('--nasira-mega-shift', shift + 'px');
+            }
+
+            item.addEventListener('mouseenter', clampMega);
+            item.addEventListener('focusin', clampMega);
+            window.addEventListener('resize', clampMega);
+
             trigger.addEventListener('click', function (e) {
-                if (window.matchMedia('(max-width: 991.98px)').matches) {
+                if (isMobileNav()) {
                     e.preventDefault();
                     item.classList.toggle('is-open');
                 }
             });
             document.addEventListener('click', function (e) {
-                if (!window.matchMedia('(max-width: 991.98px)').matches) return;
+                if (!isMobileNav()) return;
                 if (!item.contains(e.target)) item.classList.remove('is-open');
             });
         })();

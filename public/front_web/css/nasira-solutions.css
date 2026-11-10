@@ -25,8 +25,11 @@
   position: absolute;
   top: calc(100% + 0.55rem);
   left: 50%;
-  transform: translateX(-50%) translateY(6px);
-  width: min(980px, calc(100vw - 2rem));
+  right: auto;
+  /* --nasira-mega-shift keeps panel under the link but inside the viewport */
+  --nasira-mega-shift: 0px;
+  transform: translateX(calc(-50% + var(--nasira-mega-shift))) translateY(6px);
+  width: min(1180px, calc(100vw - 2rem));
   background: #fff;
   border: 1px solid rgba(0, 104, 55, 0.1);
   border-radius: 14px;
@@ -44,14 +47,14 @@
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transform: translateX(-50%) translateY(0);
+  transform: translateX(calc(-50% + var(--nasira-mega-shift))) translateY(0);
 }
 
 .nasira-solutions-mega-inner {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 2.85fr) repeat(3, minmax(0, 1fr));
   gap: 0;
-  max-height: min(62vh, 420px);
+  max-height: min(68vh, 480px);
   overflow: auto;
 }
 
@@ -67,6 +70,18 @@
 
 .nasira-solutions-col:last-child {
   border-right: 0;
+}
+
+.nasira-solutions-col--convert {
+  background: #fbfdfc;
+}
+
+.nasira-solutions-list--two-col,
+.nasira-solutions-list--multi-col {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 0.35rem;
+  row-gap: 0;
 }
 
 .nasira-solutions-col-head {
@@ -874,11 +889,15 @@
 
 @media (max-width: 1199.98px) {
   .nasira-solutions-mega {
-    width: min(720px, calc(100vw - 1.5rem));
+    width: min(860px, calc(100vw - 1.5rem));
   }
 
   .nasira-solutions-mega-inner {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nasira-solutions-col--convert {
+    grid-column: 1 / -1;
   }
 }
 
@@ -920,6 +939,10 @@
     max-height: none;
   }
 
+  .nasira-solutions-col--convert {
+    grid-column: 1 / -1;
+  }
+
   .nasira-solutions-col {
     border-right: 0;
     border-bottom: 1px solid rgba(0, 104, 55, 0.08);
@@ -935,6 +958,18 @@
 @media (max-width: 575.98px) {
   .nasira-solutions-mega-inner {
     grid-template-columns: 1fr;
+  }
+
+  .nasira-solutions-list--two-col,
+  .nasira-solutions-list--multi-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1199.98px) and (min-width: 576px) {
+  .nasira-solutions-list--two-col,
+  .nasira-solutions-list--multi-col {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

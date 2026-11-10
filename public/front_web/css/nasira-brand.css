@@ -72,8 +72,14 @@ header.nasira-header .nasira-nav-shell {
   min-height: var(--nasira-header-h);
   max-width: 1320px;
   position: relative;
+  overflow: visible;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+}
+
+header.nasira-header .nasira-nav-collapse,
+header.nasira-header .nasira-nav-links {
+  overflow: visible;
 }
 
 header.nasira-header .nasira-brand {
