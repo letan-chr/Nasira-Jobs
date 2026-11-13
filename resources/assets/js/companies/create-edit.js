@@ -267,37 +267,15 @@ listenSubmit('#addCompanyForm,#editCompanyForm', function (e) {
     if (!$('#editEmployeeDetails').length) {
         if ($('.isEdit').val()) {
             let admin_employer_editor_content = editAdminEmployerDescriptionQuill.root.innerHTML;
-            if (editAdminEmployerDescriptionQuill.getText().trim().length ===
-                0) {
-                displayErrorMessage(Lang.get('js.employer_details_field'));
-                e.preventDefault();
-                $('#btnSave').attr('disabled', false);
-                return false;
-            }
             let inputDetail = JSON.stringify(admin_employer_editor_content);
             $('#editAdminEmployerDetail').val(inputDetail.replace(/"/g, ''));
-        } else {
+        } else if (typeof addAdminEmployerDescriptionQuill !== 'undefined') {
             let editor_content = addAdminEmployerDescriptionQuill.root.innerHTML;
-            if (addAdminEmployerDescriptionQuill.getText().trim().length ===
-                0) {
-                displayErrorMessage(Lang.get('js.employer_details_field'));
-                e.preventDefault();
-                $('#btnSave').attr('disabled', false);
-                return false;
-            }
             let input = JSON.stringify(editor_content);
             $('#company_desc').val(input.replace(/"/g, ''));
         }
-    } else {
+    } else if (typeof editEmployeeDetail !== 'undefined') {
         let employer_content = editEmployeeDetail.root.innerHTML;
-
-        if (editEmployeeDetail.getText().trim().length ===
-            0) {
-            displayErrorMessage(Lang.get('js.employer_details_field'));
-            e.preventDefault();
-            $('#btnSave').attr('disabled', false);
-            return false;
-        }
         let input = JSON.stringify(employer_content);
         $('#editEmployerDetail').val(input.replace(/"/g, ''));
     }

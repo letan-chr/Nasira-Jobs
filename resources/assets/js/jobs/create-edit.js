@@ -1046,29 +1046,9 @@ listenClick("#jobsSaveBtn, #saveDraft", function(e) {
     processingBtn("#createJobForm", $(this), "loading");
     let editor_content1 = details.root.innerHTML;
     let input = JSON.stringify(editor_content1);
-    if (details.getText().trim().length === 0) {
-        displayErrorMessage(
-            Lang.get("js.description_required")
-        );
-        processingBtn("#createJobForm", $(this));
-        return false;
-    }
     $("#job_desc").val(input.replace(/"/g, ""));
-    // if (!checkSummerNoteEmpty('#details',
-    //     'Job Description field is required.', 1)) {
-    //     e.preventDefault();
-    //     $('#saveJob,#draftJob').attr('disabled', false);
-    //     return false;
-    // }
     let keyResponsibilitiesContent = response.root.innerHTML;
     let respose = JSON.stringify(keyResponsibilitiesContent);
-    if (response.getText().trim().length === 0) {
-        displayErrorMessage(
-            Lang.get("js.key_responsibilities_required")
-        );
-        processingBtn("#createJobForm", $(this));
-        return false;
-    }
     $("#key_responsibilities").val(respose.replace(/"/g, ""));
 
     if ($("#salaryToErrorMsg").text() !== "") {
@@ -1084,23 +1064,9 @@ listenClick("#editJobsSaveBtn, #saveDraft", function(e) {
     processingBtn("#editJobForm", $(this), "loading");
     let editor_content2 = editJobDescription.root.innerHTML;
     let input2 = JSON.stringify(editor_content2);
-    if (editJobDescription.getText().trim().length === 0) {
-        displayErrorMessage(
-            Lang.get("js.description_required")
-        );
-        processingBtn("#editJobForm", "#editJobsSaveBtn");
-        return false;
-    }
     $("#editJobDescription").val(input2.replace(/"/g, ""));
     let editor_content3 = editResponse.root.innerHTML;
     let input3 = JSON.stringify(editor_content3);
-    if (editResponse.getText().trim().length === 0) {
-        displayErrorMessage(
-            Lang.get("js.key_responsibilities_required")
-        );
-        processingBtn("#editJobForm", "#editJobsSaveBtn");
-        return false;
-    }
     $("#edit_responsibilities").val(input3.replace(/"/g, ""));
 
     if ($("#salaryToErrorMsg").text() !== "") {

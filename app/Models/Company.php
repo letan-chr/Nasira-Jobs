@@ -165,14 +165,20 @@ class Company extends Model implements HasMedia
      * @var array
      */
     public static $rules = [
-        'ceo' => 'required|max:180',
-        'industry_id' => 'required',
-        'ownership_type_id' => 'required',
-        'company_size_id' => 'required',
-        'established_in' => 'required',
+        'ceo' => 'nullable|max:180',
+        'industry_id' => 'nullable',
+        'ownership_type_id' => 'nullable',
+        'company_size_id' => 'nullable',
+        'established_in' => 'nullable',
         'website' => 'nullable|url',
-        'location' => 'required',
-        'no_of_offices' => 'required|numeric|min:1|max:1000',
+        'location' => 'nullable|max:255',
+        'location2' => 'nullable|max:255',
+        'no_of_offices' => 'nullable|numeric|min:0|max:1000',
+        'details' => 'nullable',
+        'fax' => 'nullable|max:50',
+        'country_id' => 'nullable',
+        'state_id' => 'nullable',
+        'city_id' => 'nullable',
     ];
 
     /**

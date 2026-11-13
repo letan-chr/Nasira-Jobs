@@ -286,6 +286,7 @@ Route::middleware('auth', 'role_or_permission:Admin|access_admin_panel', 'xss', 
          Route::get('employers', [CompanyController::class, 'index'])->name('company.index');
          Route::get('employers/create', [CompanyController::class, 'create'])->name('company.create');
          Route::post('employers', [CompanyController::class, 'store'])->name('company.store');
+         Route::post('employers/quick-store', [CompanyController::class, 'quickStore'])->name('company.quick.store');
          Route::get('employers/{company}', [CompanyController::class, 'show'])->name('company.show');
          Route::get('employers/{company}/edit', [CompanyController::class, 'edit'])->name('company.edit');
          Route::put('employers/{company}', [CompanyController::class, 'update'])->name('company.update');

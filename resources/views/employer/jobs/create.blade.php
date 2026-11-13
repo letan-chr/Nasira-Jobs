@@ -23,3 +23,6 @@
     {{Form::hidden('employerPanel',true,['class'=>'jobEmployeePanel'])}}
     {{Form::hidden('isEdit',true,['class'=>'isEdit'])}}
 @endsection
+@push('scripts')
+    <script src="{{ asset('js/nasira-simple-job.js') }}?v=1"></script>
+@endpush

@@ -30,6 +30,7 @@
                 </div>
             </div>
         </div>
+        @include('jobs.modals.company')
         @include('jobs.modals.job_type')
         @include('jobs.modals.job_category')
         @include('jobs.modals.skills')
@@ -46,6 +47,9 @@
         {{Form::hidden('default-document-image-url', asset('front_web/images/job-categories.png'), ['id' => 'defaultDocumentImageUrl']) }}
         {{Form::hidden('isEdit',true,['class'=>'isEdit'])}}
     </div>
+@endsection
+@section('page_scripts')
+    <script src="{{ asset('js/nasira-simple-job.js') }}?v=1"></script>
 @endsection
 {{--@push('scripts')--}}
     {{--    <script src="{{ asset('assets/js/autonumeric/autoNumeric.min.js') }}"></script>--}}

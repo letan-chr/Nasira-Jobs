@@ -75,14 +75,15 @@ class CompanyRepository extends BaseRepository
     /**
      * @throws Throwable
      */
-    public function store(array $input): bool
+    public function store(array $input): Company
     {
         try {
             DB::beginTransaction();
+            $input = $this->normalizeCompanyInput($input);
             $input['unique_id'] = getUniqueCompanyId();
             $company = $this->create(Arr::only($input, (new Company())->getFillable()));
 
-            // Create User
+            // Create User (name is enough — email/password auto-filled when omitted)
             $input['password'] = Hash::make($input['password']);
             $input['first_name'] = $input['name'];
             $input['owner_id'] = $company->id;
@@ -123,31 +124,61 @@ class CompanyRepository extends BaseRepository
                     ->toMediaCollection(User::PROFILE, config('app.media_disc'));
             }
 
-            /** @var SubscriptionRepository $subscriptionRepo */
-            $subscriptionRepo = app(SubscriptionRepository::class);
-            $subscriptionRepo->createStripeCustomer($user);
-
-            if ($user->is_verified) {
-//                $user->update(['email_verified_at' => Carbon::now()]);
-            } else {
-//                $user->sendEmailVerificationNotification();
+            try {
+                /** @var SubscriptionRepository $subscriptionRepo */
+                $subscriptionRepo = app(SubscriptionRepository::class);
+                $subscriptionRepo->createStripeCustomer($user);
+            } catch (Exception $stripeException) {
+                // Stripe is optional for quick company create
             }
-            $user->update(['email_verified_at' => Carbon::now()]);
 
-//            if ($user->is_verified) {
-//                $user->update(['email_verified_at' => Carbon::now()]);
-//            } else {
-//                $user->sendEmailVerificationNotification();
-//            }
+            $user->update(['email_verified_at' => Carbon::now()]);
 
             DB::commit();
 
-            return true;
+            return $company->fresh(['user']);
         } catch (Exception $e) {
             DB::rollBack();
 
             throw new UnprocessableEntityHttpException($e->getMessage());
         }
+    }
+
+    /**
+     * Company name is enough; fill safe defaults for account fields.
+     */
+    private function normalizeCompanyInput(array $input): array
+    {
+        $name = trim((string) ($input['name'] ?? ''));
+        $input['name'] = $name;
+
+        if (empty($input['email'])) {
+            $slug = preg_replace('/[^a-z0-9]+/i', '', strtolower($name)) ?: 'company';
+            $input['email'] = $slug.'.'.uniqid().'@nasirajobs.local';
+        }
+
+        if (empty($input['password'])) {
+            $generated = bin2hex(random_bytes(8));
+            $input['password'] = $generated;
+            $input['password_confirmation'] = $generated;
+        }
+
+        foreach ([
+            'industry_id', 'ownership_type_id', 'company_size_id', 'established_in', 'no_of_offices',
+            'country_id', 'state_id', 'city_id',
+        ] as $nullableId) {
+            if (! isset($input[$nullableId]) || $input[$nullableId] === '' || ! is_numeric($input[$nullableId])) {
+                $input[$nullableId] = null;
+            }
+        }
+
+        if (empty($input['country_id']) && function_exists('getDefaultCountryId')) {
+            $input['country_id'] = getDefaultCountryId();
+        }
+
+        $input['is_active'] = isset($input['is_active']) ? (int) $input['is_active'] : 1;
+
+        return $input;
     }
 
     /**

@@ -4,54 +4,36 @@ namespace App\Http\Requests;
 
 use App\Models\Company;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\ValidationException;
 
 class CreateCompanyRequest extends FormRequest
 {
-    /**
-     * @throws ValidationException
-     */
-    public function prepareForValidation()
+    public function prepareForValidation(): void
     {
-        $employerDetails = trim(request()->get('details'));
-        if (empty($employerDetails)) {
-            throw ValidationException::withMessages([
-                'details' => __('messages.employer_details_required'),
-            ]);
+        $merge = [];
+        foreach (['email', 'password', 'password_confirmation', 'ceo', 'location', 'website', 'details'] as $field) {
+            if ($this->has($field) && $this->input($field) === '') {
+                $merge[$field] = null;
+            }
+        }
+        if ($merge !== []) {
+            $this->merge($merge);
         }
     }
 
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     */
     public function rules(): array
     {
         $rules = Company::$rules;
         $rules['name'] = 'required|max:180';
-        $rules['email'] = 'required|email:filter|unique:users,email';
-        $rules['password'] = 'required|same:password_confirmation|min:8';
+        $rules['email'] = 'nullable|email:filter|unique:users,email';
+        $rules['password'] = 'nullable|same:password_confirmation|min:8';
         $rules['phone'] = 'nullable';
-        $rules['image'] = 'required|mimes:jpg,jpeg,png';
+        $rules['image'] = 'nullable|mimes:jpg,jpeg,png';
 
         return $rules;
     }
-
-//    /**
-//     * @return array|string[]
-//     */
-//    public function messages()
-//    {
-//        return [
-//            'country_id.required' => 'The country field is required.',
-//            'website.url' => ''
-//        ];
-//    }
 }

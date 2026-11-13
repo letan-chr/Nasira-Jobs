@@ -72,16 +72,46 @@ class CompanyController extends AppBaseController
      *
      * @throws \Throwable
      */
-    public function store(CreateCompanyRequest $request): RedirectResponse
+    public function store(CreateCompanyRequest $request): RedirectResponse|JsonResponse
     {
         $input = $request->all();
         $input['is_active'] = (isset($input['is_active'])) ? 1 : 0;
 
         $company = $this->companyRepository->store($input);
 
+        if ($request->ajax() || $request->wantsJson()) {
+            return $this->sendResponse([
+                'id' => $company->id,
+                'name' => $company->user->first_name ?? $request->get('name'),
+            ], __('messages.flash.company_save'));
+        }
+
         Flash::success(__('messages.flash.company_save'));
 
         return redirect(route('company.index'));
+    }
+
+    /**
+     * Quick company create from job form — name is enough.
+     */
+    public function quickStore(Request $request): JsonResponse
+    {
+        $request->validate([
+            'name' => 'required|max:180',
+            'email' => 'nullable|email:filter|unique:users,email',
+        ]);
+
+        $company = $this->companyRepository->store([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'is_active' => 1,
+            'country_id' => getDefaultCountryId(),
+        ]);
+
+        return $this->sendResponse([
+            'id' => $company->id,
+            'name' => $company->user->first_name ?? $request->get('name'),
+        ], __('messages.flash.company_save'));
     }
 
     /**

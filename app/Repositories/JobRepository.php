@@ -140,14 +140,10 @@ class JobRepository extends BaseRepository
         try {
             DB::beginTransaction();
 
-            $input['salary_from'] = (float) removeCommaFromNumbers($input['salary_from']);
-            $input['salary_to'] = (float) removeCommaFromNumbers($input['salary_to']);
+            $input = $this->normalizeJobInput($input);
             $input['company_id'] = (isset($input['company_id'])) ? $input['company_id'] : Auth::user()->owner_id;
             $input['job_id'] = $this->getUniqueJobId();
             /** @var Job $job */
-            if (isset($input['state_id']) && ! is_numeric($input['state_id'])) {
-                $input['state_id'] = null;
-            }
             if (Auth::user()->hasRole('Admin')) {
                 $input['is_created_by_admin'] = 1;
             }
@@ -160,27 +156,24 @@ class JobRepository extends BaseRepository
             if (isset($input['jobTag']) && ! empty($input['jobTag'])) {
                 $job->jobsTag()->sync($input['jobTag']);
             }
-            /** @var JobType $jobType */
-            $jobType = JobType::with('candidateJobAlerts')->whereId($input['job_type_id'])->first();
-            $userIds = $jobType->candidateJobAlerts->where('job_alert', '=', 1)->pluck('user_id');
-            $notificationAlertUserIds = $jobType->candidateJobAlerts->pluck('user_id');
-            $users = User::whereIn('id', $userIds)->get();
-            $notificationAlertUsers = User::whereIn('id', $notificationAlertUserIds)->get();
-            if ($job->status != Job::STATUS_DRAFT) {
-                $jobAlert = NotificationSetting::where('key', 'JOB_ALERT')->first()->value;
-                foreach ($notificationAlertUsers as $user) {
-                    $jobAlert == 1 ?
-                        addNotification([
-                            Notification::JOB_ALERT,
-                            $user->id,
-                            Notification::CANDIDATE,
-                            'New job posted with '.$job->job_title.', if you are interested then you can apply for this job.',
-                        ]) : false;
+
+            if (! empty($input['job_type_id']) && $job->status != Job::STATUS_DRAFT) {
+                /** @var JobType|null $jobType */
+                $jobType = JobType::with('candidateJobAlerts')->whereId($input['job_type_id'])->first();
+                if ($jobType) {
+                    $notificationAlertUserIds = $jobType->candidateJobAlerts->pluck('user_id');
+                    $notificationAlertUsers = User::whereIn('id', $notificationAlertUserIds)->get();
+                    $jobAlert = NotificationSetting::where('key', 'JOB_ALERT')->first()->value;
+                    foreach ($notificationAlertUsers as $user) {
+                        $jobAlert == 1 ?
+                            addNotification([
+                                Notification::JOB_ALERT,
+                                $user->id,
+                                Notification::CANDIDATE,
+                                'New job posted with '.$job->job_title.', if you are interested then you can apply for this job.',
+                            ]) : false;
+                    }
                 }
-                /** @var EmailTemplate $templateBody */
-                // if ($input['status']!= Job::SELECT_PANDING) {
-                //     dispatch(new CandidatesAlertJob($input['job_type_id']));
-                // }
             }
 
             DB::commit();
@@ -194,6 +187,43 @@ class JobRepository extends BaseRepository
     }
 
     /**
+     * Empty optional fields become null so a short job form can be saved.
+     */
+    private function normalizeJobInput(array $input): array
+    {
+        foreach (['salary_from', 'salary_to'] as $salaryKey) {
+            if (! array_key_exists($salaryKey, $input) || $input[$salaryKey] === '' || $input[$salaryKey] === null) {
+                $input[$salaryKey] = null;
+            } else {
+                $input[$salaryKey] = (float) removeCommaFromNumbers($input[$salaryKey]);
+            }
+        }
+
+        foreach ([
+            'state_id', 'city_id', 'country_id', 'job_category_id', 'currency_id', 'salary_period_id',
+            'job_type_id', 'functional_area_id', 'career_level_id', 'job_shift_id', 'degree_level_id',
+            'position', 'experience', 'no_preference',
+        ] as $nullableId) {
+            if (! isset($input[$nullableId]) || $input[$nullableId] === '' || ! is_numeric($input[$nullableId])) {
+                $input[$nullableId] = null;
+            }
+        }
+
+        if (empty($input['job_expiry_date'])) {
+            $input['job_expiry_date'] = null;
+        }
+
+        if (! isset($input['hide_salary'])) {
+            $input['hide_salary'] = 0;
+        }
+        if (! isset($input['is_freelance'])) {
+            $input['is_freelance'] = 0;
+        }
+
+        return $input;
+    }
+
+    /**
      * @return bool|Builder|Builder[]|Collection|Model
      *
      * @throws \Throwable
@@ -203,12 +233,7 @@ class JobRepository extends BaseRepository
 
         try {
             DB::beginTransaction();
-            $input['salary_from'] = (float) removeCommaFromNumbers($input['salary_from']);
-            $input['salary_to'] = (float) removeCommaFromNumbers($input['salary_to']);
-            // update Job
-            if (isset($input['state_id']) && ! is_numeric($input['state_id'])) {
-                $input['state_id'] = null;
-            }
+            $input = $this->normalizeJobInput($input);
             $old_status = $job->status;
 
             if ($job->status == Job::STATUS_DRAFT) {
