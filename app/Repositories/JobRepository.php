@@ -140,7 +140,12 @@ class JobRepository extends BaseRepository
         try {
             DB::beginTransaction();
 
+            $roles = $input['roles'] ?? [];
+            $skills = $input['jobsSkill'] ?? [];
+            $tags = $input['jobTag'] ?? [];
             $input = $this->normalizeJobInput($input);
+            unset($input['roles'], $input['jobsSkill'], $input['jobTag']);
+
             $input['company_id'] = (isset($input['company_id'])) ? $input['company_id'] : Auth::user()->owner_id;
             $input['job_id'] = $this->getUniqueJobId();
             /** @var Job $job */
@@ -150,11 +155,13 @@ class JobRepository extends BaseRepository
 
             $job = $this->create($input);
 
-            if (isset($input['jobsSkill']) && ! empty($input['jobsSkill'])) {
-                $job->jobsSkill()->sync($input['jobsSkill']);
+            $this->syncJobRoles($job, $roles);
+
+            if (! empty($skills)) {
+                $job->jobsSkill()->sync($skills);
             }
-            if (isset($input['jobTag']) && ! empty($input['jobTag'])) {
-                $job->jobsTag()->sync($input['jobTag']);
+            if (! empty($tags)) {
+                $job->jobsTag()->sync($tags);
             }
 
             if (! empty($input['job_type_id']) && $job->status != Job::STATUS_DRAFT) {
@@ -213,6 +220,10 @@ class JobRepository extends BaseRepository
             $input['job_expiry_date'] = null;
         }
 
+        if (empty($input['apply_url'])) {
+            $input['apply_url'] = null;
+        }
+
         if (! isset($input['hide_salary'])) {
             $input['hide_salary'] = 0;
         }
@@ -233,7 +244,11 @@ class JobRepository extends BaseRepository
 
         try {
             DB::beginTransaction();
+            $roles = $input['roles'] ?? [];
+            $skills = $input['jobsSkill'] ?? [];
+            $tags = $input['jobTag'] ?? [];
             $input = $this->normalizeJobInput($input);
+            unset($input['roles'], $input['jobsSkill'], $input['jobTag']);
             $old_status = $job->status;
 
             if ($job->status == Job::STATUS_DRAFT) {
@@ -248,19 +263,17 @@ class JobRepository extends BaseRepository
                 }
             }
 
-            // if ($job->status!= Job::SELECT_PANDING) {
-            //     if($old_status == Job::STATUS_DRAFT){
-            //         dispatch(new CandidatesAlertJob($input['job_type_id']));
-            //     }
-            // }
-
             $job->update($input);
 
-            if (isset($input['jobsSkill']) && ! empty($input['jobsSkill'])) {
-                $job->jobsSkill()->sync($input['jobsSkill']);
+            $this->syncJobRoles($job, $roles);
+
+            if (! empty($skills)) {
+                $job->jobsSkill()->sync($skills);
+            } else {
+                $job->jobsSkill()->sync([]);
             }
-            if (isset($input['jobTag']) && ! empty($input['jobTag'])) {
-                $job->jobsTag()->sync($input['jobTag']);
+            if (! empty($tags)) {
+                $job->jobsTag()->sync($tags);
             } else {
                 $job->jobsTag()->sync([]);
             }
@@ -272,6 +285,30 @@ class JobRepository extends BaseRepository
             DB::rollBack();
 
             throw new UnprocessableEntityHttpException($e->getMessage());
+        }
+    }
+
+    /**
+     * Replace all named roles for a job post.
+     *
+     * @param  array<int, array{title?:string,requirements?:string}>  $roles
+     */
+    private function syncJobRoles(Job $job, array $roles): void
+    {
+        $job->roles()->delete();
+
+        $order = 0;
+        foreach ($roles as $role) {
+            $title = trim((string) ($role['title'] ?? ''));
+            if ($title === '') {
+                continue;
+            }
+
+            $job->roles()->create([
+                'title' => $title,
+                'requirements' => trim((string) ($role['requirements'] ?? '')) ?: null,
+                'sort_order' => $order++,
+            ]);
         }
     }
 

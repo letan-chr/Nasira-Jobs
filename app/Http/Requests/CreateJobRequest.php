@@ -25,6 +25,10 @@ class CreateJobRequest extends FormRequest
 
         $this->request->set('salary_from', $salaryFrom);
         $this->request->set('salary_to', $salaryTo);
+
+        if ($this->input('apply_url') === '') {
+            $this->merge(['apply_url' => null]);
+        }
     }
 
     /**

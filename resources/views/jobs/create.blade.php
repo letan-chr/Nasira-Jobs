@@ -50,6 +50,7 @@
 @endsection
 @section('page_scripts')
     <script src="{{ asset('js/nasira-simple-job.js') }}?v=1"></script>
+    <script src="{{ asset('js/nasira-job-roles.js') }}?v=1"></script>
 @endsection
 {{--@push('scripts')--}}
     {{--    <script src="{{ asset('assets/js/autonumeric/autoNumeric.min.js') }}"></script>--}}

@@ -247,7 +247,7 @@ class TelegramJobSyncService
      */
     private function message(Job $job): string
     {
-        $job->loadMissing(['company.user', 'jobType', 'city', 'state', 'country', 'currency', 'salaryPeriod']);
+        $job->loadMissing(['company.user', 'jobType', 'city', 'state', 'country', 'currency', 'salaryPeriod', 'roles']);
 
         $company = $job->company?->user?->full_name ?: ($job->company?->ceo ?: 'Company');
         $location = collect([$job->city?->name, $job->state?->name, $job->country?->name])->filter()->implode(', ');
@@ -267,7 +267,7 @@ class TelegramJobSyncService
 
         $intro = trim(Str::limit(preg_replace('/\s+/', ' ', strip_tags((string) $job->description)) ?? '', 180));
         if ($intro === '') {
-            $intro = $this->e($company).' would like to invite competent and qualified candidates.';
+            $intro = $this->e($company).' is looking for competent and qualified candidates.';
         } else {
             $intro = $this->e($intro);
         }
@@ -279,9 +279,25 @@ class TelegramJobSyncService
             '',
             $intro,
             '',
-            '✅ Position: '.$this->e((string) $job->job_title),
-            '✅ Type: '.$this->e($type),
         ];
+
+        if ($job->roles->isNotEmpty()) {
+            foreach ($job->roles as $i => $role) {
+                $lines[] = '✅ Position '.($i + 1).': '.$this->e($role->title);
+                if (! empty($role->requirements)) {
+                    $req = Str::limit(preg_replace('/\s+/', ' ', strip_tags((string) $role->requirements)) ?? '', 120);
+                    if ($req !== '') {
+                        $lines[] = '■ '.$this->e($req);
+                    }
+                }
+                $lines[] = '';
+            }
+        } else {
+            $lines[] = '✅ Position: '.$this->e((string) $job->job_title);
+            $lines[] = '';
+        }
+
+        $lines[] = '✅ Type: '.$this->e($type);
 
         if ($location !== '') {
             $lines[] = '✅ Location: '.$this->e($location);
@@ -291,7 +307,7 @@ class TelegramJobSyncService
         $lines[] = '';
         $lines[] = '---';
         $lines[] = 'How to Apply Online?? 👇👇👇';
-        $lines[] = $detailUrl;
+        $lines[] = ! empty($job->apply_url) ? $job->apply_url : $detailUrl;
         $lines[] = '🎈 Telegram:- '.$channelUrl;
 
         return Str::limit(implode("\n", $lines), 1024, '…');

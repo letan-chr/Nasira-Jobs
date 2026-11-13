@@ -112,6 +112,8 @@ class JobController extends AppBaseController
             return view('errors.404');
         }
 
+        $job->loadMissing('roles');
+
         return view('employer.jobs.show')->with('job', $job);
     }
 
@@ -142,6 +144,8 @@ class JobController extends AppBaseController
         if (isset($job->state_id)) {
             $cities = getCities($job->state_id);
         }
+
+        $job->load('roles');
 
         return view('employer.jobs.edit', compact('data', 'job', 'cities', 'states'));
     }
@@ -294,6 +298,7 @@ class JobController extends AppBaseController
             $cities = getCities($job->state_id);
         }
         $countries = Country::pluck('name', 'id');
+        $job->load('roles');
 
         return view('jobs.edit', compact('data', 'job', 'cities', 'states', 'countries'));
     }
@@ -325,7 +330,7 @@ class JobController extends AppBaseController
      */
     public function showJobs(Job $job): View
     {
-        $job = Job::with('company.user')->whereId($job->id)->first();
+        $job = Job::with(['company.user', 'roles'])->whereId($job->id)->first();
 
         return view('jobs.show')->with('job', $job);
     }

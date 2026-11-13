@@ -115,4 +115,25 @@
             <p class="fs-5 text-gray-800">{{ __('messages.n/a') }}</p>
         @endif
     </div>
+    @if (!empty($job->apply_url))
+        <div class="col-sm-12 d-flex flex-column mb-md-10 mb-5">
+            <label class="pb-2 fs-5 text-gray-600">External Apply Link:</label>
+            <p class="fs-5 text-gray-800">
+                <a href="{{ $job->apply_url }}" target="_blank" rel="noopener noreferrer">{{ $job->apply_url }}</a>
+            </p>
+        </div>
+    @endif
+    @if ($job->roles && $job->roles->count())
+        <div class="col-12 d-flex flex-column mb-md-10 mb-5">
+            <label class="pb-2 fs-5 text-gray-600">Positions / Roles:</label>
+            @foreach ($job->roles as $i => $role)
+                <div class="mb-4">
+                    <p class="fs-5 text-gray-800 fw-bold mb-1">✅ Position {{ $i + 1 }}: {{ $role->title }}</p>
+                    @if ($role->requirements)
+                        <p class="fs-6 text-gray-700 mb-0">{!! nl2br(e($role->requirements)) !!}</p>
+                    @endif
+                </div>
+            @endforeach
+        </div>
+    @endif
 </div>

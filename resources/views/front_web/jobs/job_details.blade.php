@@ -114,8 +114,16 @@
                                         @endif
                                     </div>
                                     <div class="desc me-2 pe-2 mb-sm-0 mb-2">
-                                        @if (!$isApplied && !$isJobApplicationRejected && !$isJobApplicationCompleted && !$isJobApplicationShortlisted)
-                                            @if ($isActive && !$job->is_suspended && \Carbon\Carbon::today()->toDateString() < $job->job_expiry_date->toDateString())
+                                        @php
+                                            $jobOpen = $isActive && !$job->is_suspended && (empty($job->job_expiry_date) || \Carbon\Carbon::today()->lte($job->job_expiry_date));
+                                            $externalApply = !empty($job->apply_url);
+                                        @endphp
+                                        @if ($jobOpen && $externalApply)
+                                            <a class="btn btn-dark" href="{{ $job->apply_url }}" target="_blank" rel="noopener noreferrer">
+                                                {{ __('web.job_details.apply_for_job') }}
+                                            </a>
+                                        @elseif (!$isApplied && !$isJobApplicationRejected && !$isJobApplicationCompleted && !$isJobApplicationShortlisted)
+                                            @if ($jobOpen)
                                                 <button class="btn {{ $isJobDrafted ? 'btn-primary ' : 'btn-dark' }} "
                                                     onclick="window.location='{{ route('show.apply-job-form', $job->job_id) }}'">
                                                     {{ $isJobDrafted ? __('web.job_details.edit_draft') : __('web.job_details.apply_for_job') }}
@@ -129,19 +137,30 @@
                                 </div>
                             @endrole
                         @else
-                            @if ($isActive && !$job->is_suspended && \Carbon\Carbon::today()->toDateString() < $job->job_expiry_date->toDateString())
+                            @php
+                                $jobOpenGuest = $isActive && !$job->is_suspended && (empty($job->job_expiry_date) || \Carbon\Carbon::today()->lte($job->job_expiry_date));
+                            @endphp
+                            @if ($jobOpenGuest)
                                 <div class="hero-desc d-flex flex-wrap">
-                                    <div class="desc d-flex me-4 pe-2">
-                                        <button class="btn btn-primary  mb-3"
-                                            onclick="window.location='{{ route('candidate.register') }}'">{{ __('web.job_details.register_to_apply') }}
-                                        </button>
-                                    </div>
-                                    <div class="desc d-flex me-4 pe-2">
-                                        <button class="btn btn-primary  mb-3"
-                                            onclick="window.location='{{ route('front.candidate.login') }}'">
-                                            {{ __('web.job_details.apply_for_job') }}
-                                        </button>
-                                    </div>
+                                    @if (!empty($job->apply_url))
+                                        <div class="desc d-flex me-4 pe-2">
+                                            <a class="btn btn-dark mb-3" href="{{ $job->apply_url }}" target="_blank" rel="noopener noreferrer">
+                                                {{ __('web.job_details.apply_for_job') }}
+                                            </a>
+                                        </div>
+                                    @else
+                                        <div class="desc d-flex me-4 pe-2">
+                                            <button class="btn btn-primary  mb-3"
+                                                onclick="window.location='{{ route('candidate.register') }}'">{{ __('web.job_details.register_to_apply') }}
+                                            </button>
+                                        </div>
+                                        <div class="desc d-flex me-4 pe-2">
+                                            <button class="btn btn-primary  mb-3"
+                                                onclick="window.location='{{ route('front.candidate.login') }}'">
+                                                {{ __('web.job_details.apply_for_job') }}
+                                            </button>
+                                        </div>
+                                    @endif
                                 </div>
                             @endif
                         @endauth
@@ -189,6 +208,22 @@
                                     <p class="fs-16 text-gray mb-5 pb-lg-4">{{ __('messages.n/a') }}</p>
                                 @endif
                             </div>
+                            @if ($job->roles && $job->roles->count())
+                                <div class="job-roles mb-lg-5 mb-4">
+                                    <h5 class="fs-18 text-secondary mb-4">Open Positions</h5>
+                                    @foreach ($job->roles as $i => $role)
+                                        <div class="mb-4 p-3 border rounded">
+                                            <h6 class="fw-bold text-secondary mb-2">✅ Position {{ $i + 1 }}: {{ $role->title }}</h6>
+                                            @if ($role->requirements)
+                                                <div class="text-gray">
+                                                    <strong>Qualifications &amp; Requirements:</strong>
+                                                    <div class="mt-1">{!! nl2br(e($role->requirements)) !!}</div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
                             <div class="key-responsibilities mb-lg-5 mb-4">
                                 <h5 class="fs-18 text-secondary mb-4">@lang('web.web_jobs.key_responsibilities')</h5>
                                 @if ($job->key_responsibilities)

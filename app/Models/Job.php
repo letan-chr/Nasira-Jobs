@@ -240,9 +240,13 @@ class Job extends Model
         'job_shift_id' => 'nullable',
         'degree_level_id' => 'nullable',
         'description' => 'nullable',
+        'apply_url' => 'nullable|url|max:500',
         'key_responsibilities' => 'nullable',
         'jobsSkill' => 'nullable|array',
         'jobTag' => 'nullable|array',
+        'roles' => 'nullable|array',
+        'roles.*.title' => 'nullable|string|max:180',
+        'roles.*.requirements' => 'nullable|string',
     ];
 
     protected $table = 'jobs';
@@ -251,6 +255,7 @@ class Job extends Model
         'job_id',
         'job_title',
         'description',
+        'apply_url',
         'salary_from',
         'salary_to',
         'company_id',
@@ -304,6 +309,7 @@ class Job extends Model
         'city_id' => 'integer',
         'state_id' => 'integer',
         'description' => 'string',
+        'apply_url' => 'string',
         'job_expiry_date' => 'date',
         'no_preference' => 'integer',
         'hide_salary' => 'boolean',
@@ -417,6 +423,14 @@ class Job extends Model
     public function appliedJobs(): HasMany
     {
         return $this->hasMany(JobApplication::class, 'job_id', 'id');
+    }
+
+    /**
+     * Multiple named roles inside one job post (BAN-DRCE style).
+     */
+    public function roles(): HasMany
+    {
+        return $this->hasMany(JobRole::class, 'job_id')->orderBy('sort_order')->orderBy('id');
     }
 
     public function jobCategory(): BelongsTo

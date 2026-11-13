@@ -4,6 +4,12 @@
         <span class="required"></span>
         {{ Form::text('job_title', null, ['class' => 'form-control','required', 'placeholder' => __('messages.job.job_title')]) }}
     </div>
+    @include('jobs.partials.roles_fields')
+    <div class="col-xl-12 col-md-12 col-sm-12 mb-5">
+        {{ Form::label('apply_url', 'External Apply Link:', ['class' => 'form-label']) }}
+        {{ Form::url('apply_url', null, ['class' => 'form-control', 'placeholder' => 'https://example.com/apply (optional)']) }}
+        <div class="form-text">If set, Apply redirects to this website instead of the Nasira form.</div>
+    </div>
     <div class="col-xl-6 col-md-6 col-sm-12 mb-5">
         {{ Form::label('job_type_id', __('messages.job.job_type').':', ['class' => 'form-label']) }}
         {{ Form::select('job_type_id', $data['jobType'],null, ['id'=>'jobTypeId','class' => 'form-select','placeholder' => __('messages.company.select_job_type'),'data-control'=>'select2']) }}

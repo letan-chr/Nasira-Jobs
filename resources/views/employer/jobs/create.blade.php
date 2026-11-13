@@ -25,4 +25,5 @@
 @endsection
 @push('scripts')
     <script src="{{ asset('js/nasira-simple-job.js') }}?v=1"></script>
+    <script src="{{ asset('js/nasira-job-roles.js') }}?v=1"></script>
 @endpush

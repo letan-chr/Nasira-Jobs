@@ -15,6 +15,12 @@
                 class="required"></span>
         {{ Form::text('job_title', null, ['class' => 'form-control','required', 'placeholder' => __('messages.job.job_title')]) }}
     </div>
+    @include('jobs.partials.roles_fields')
+    <div class="col-xl-12 col-md-12 col-sm-12 mb-5">
+        {{ Form::label('apply_url', 'External Apply Link:', ['class' => 'form-label']) }}
+        {{ Form::url('apply_url', null, ['class' => 'form-control', 'placeholder' => 'https://example.com/apply (optional — redirects Apply to this website)']) }}
+        <div class="form-text">If set, the Apply button opens this link instead of the Nasira apply form.</div>
+    </div>
     <div class="col-xl-6 col-md-6 col-sm-12 mb-5">
         {{ Form::label('job_type_id', __('messages.job.job_type').':', ['class' => 'form-label']) }}
         <div class="input-group flex-nowrap">

@@ -102,6 +102,19 @@
             <p  class="fw-bolder fs-6 text-gray-800"> {{ __('messages.n/a') }}</p>
         @endif
     </div>
+    @if ($job->roles && $job->roles->count())
+        <div class="form-group col-xl-12 col-md-12 col-sm-12">
+            <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Positions / Roles:</label>
+            @foreach ($job->roles as $i => $role)
+                <div class="mb-3">
+                    <p class="fw-bolder fs-6 text-gray-800 mb-1">✅ Position {{ $i + 1 }}: {{ $role->title }}</p>
+                    @if ($role->requirements)
+                        <p class="fs-7 text-gray-700 mb-0">{!! nl2br(e($role->requirements)) !!}</p>
+                    @endif
+                </div>
+            @endforeach
+        </div>
+    @endif
     <div class="form-group col-xl-6 col-md-6 col-sm-12">
 {{--        {{ Form::label('salary_from', __('messages.job.salary_from').':') }}--}}
         {{ Form::label('salary_from', __('messages.job.salary_from').':'), ['class' => 'form-label fs-6 fw-bolder text-gray-700 mb-3']) }}

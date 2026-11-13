@@ -59,6 +59,7 @@ class JobController extends AppBaseController
             'country',
             'state',
             'city',
+            'roles',
         ])->whereJobId($uniqueJobId)->first();
         $skill = Job::with('jobCategory', 'jobShift', 'jobsSkill', 'company')->whereJobId($uniqueJobId)
             ->orderByDesc('created_at')->get();
